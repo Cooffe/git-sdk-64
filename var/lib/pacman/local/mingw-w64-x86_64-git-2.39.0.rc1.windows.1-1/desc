@@ -1,8 +1,8 @@
 %NAME%
-mingw-w64-x86_64-git-doc-html
+mingw-w64-x86_64-git
 
 %VERSION%
-2.39.0.rc0.windows.1-1
+2.39.0.rc1.windows.1-1
 
 %BASE%
 mingw-w64-git
@@ -17,16 +17,16 @@ https://git-for-windows.github.io/
 any
 
 %BUILDDATE%
-1669201616
+1669816973
 
 %INSTALLDATE%
-1669260125
+1669865549
 
 %PACKAGER%
 Git for Windows Build Agent <ci@git-for-windows.build>
 
 %SIZE%
-16978405
+50483604
 
 %LICENSE%
 GPL2
