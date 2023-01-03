@@ -2,7 +2,7 @@
 perl-HTTP-Cookies
 
 %VERSION%
-6.10-1
+6.10-2
 
 %BASE%
 perl-HTTP-Cookies
@@ -17,16 +17,16 @@ https://metacpan.org/release/HTTP-Cookies
 any
 
 %BUILDDATE%
-1612522242
+1672329844
 
 %INSTALLDATE%
-1612667506
+1672455689
 
 %PACKAGER%
-CI (msys2-autobuild/04735f8c/540070067)
+CI (msys2/msys2-autobuild/307799fd/3801661035)
 
 %SIZE%
-44827
+44828
 
 %REASON%
 1

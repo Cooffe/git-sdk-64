@@ -2,7 +2,7 @@
 pacman
 
 %VERSION%
-6.0.1-27
+6.0.1-28
 
 %BASE%
 pacman
@@ -17,16 +17,16 @@ https://www.archlinux.org/pacman/
 x86_64
 
 %BUILDDATE%
-1672217977
+1672386387
 
 %INSTALLDATE%
-1672369276
+1672455685
 
 %PACKAGER%
-CI (msys2/msys2-autobuild/307799fd/3792859931)
+CI (msys2/msys2-autobuild/307799fd/3805541509)
 
 %SIZE%
-37275320
+37275279
 
 %LICENSE%
 GPL

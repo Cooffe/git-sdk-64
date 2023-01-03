@@ -2,7 +2,7 @@
 perl-IO-HTML
 
 %VERSION%
-1.004-1
+1.004-2
 
 %BASE%
 perl-IO-HTML
@@ -17,16 +17,16 @@ https://metacpan.org/release/IO-HTML
 any
 
 %BUILDDATE%
-1608380936
+1672329811
 
 %INSTALLDATE%
-1608520237
+1672455689
 
 %PACKAGER%
-CI (msys2-autobuild/dfb80bed/432379984)
+CI (msys2/msys2-autobuild/307799fd/3801661035)
 
 %SIZE%
-25376
+25377
 
 %REASON%
 1

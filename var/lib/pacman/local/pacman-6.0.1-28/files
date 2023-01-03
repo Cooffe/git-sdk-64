@@ -399,7 +399,7 @@ var/lib/
 var/lib/pacman/
 
 %BACKUP%
-etc/pacman.conf	f41f9b16d513479424664463873054b5
+etc/pacman.conf	e37d160042192fbf55e19de408d175d6
 etc/makepkg.conf	bb4eb927d55038541daac2e33f064a90
 etc/makepkg_mingw.conf	0b6eaa61c4f45e8c3ac8d7374afb5c4a
 
