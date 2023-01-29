@@ -2,7 +2,7 @@
 pacman-contrib
 
 %VERSION%
-1.8.0-1
+1.8.2-1
 
 %BASE%
 pacman-contrib
@@ -17,16 +17,16 @@ https://gitlab.archlinux.org/pacman/pacman-contrib
 x86_64
 
 %BUILDDATE%
-1667749299
+1674923508
 
 %INSTALLDATE%
-1668052189
+1674961699
 
 %PACKAGER%
-CI (msys2/msys2-autobuild/59e8e1af/3404918121)
+CI (msys2/msys2-autobuild/1666f6d3/4032625792)
 
 %SIZE%
-9859733
+10851910
 
 %LICENSE%
 spdx:GPL-2.0-or-later

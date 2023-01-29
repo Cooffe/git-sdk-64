@@ -2,7 +2,7 @@
 libedit
 
 %VERSION%
-20210910_3.1-2
+20221030_3.1-1
 
 %BASE%
 libedit
@@ -17,16 +17,16 @@ https://www.thrysoee.dk/editline/
 x86_64
 
 %BUILDDATE%
-1666456596
+1674923349
 
 %INSTALLDATE%
-1666587255
+1674961699
 
 %PACKAGER%
-CI (msys2/msys2-autobuild/5d06444a/3303823789)
+CI (msys2/msys2-autobuild/1666f6d3/4032625792)
 
 %SIZE%
-503091
+472511
 
 %REASON%
 1
