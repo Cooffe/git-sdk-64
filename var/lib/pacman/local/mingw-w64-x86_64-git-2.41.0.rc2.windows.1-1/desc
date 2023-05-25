@@ -2,7 +2,7 @@
 mingw-w64-x86_64-git
 
 %VERSION%
-2.41.0.rc1.windows.1-1
+2.41.0.rc2.windows.1-1
 
 %BASE%
 mingw-w64-git
@@ -17,10 +17,10 @@ https://git-for-windows.github.io/
 any
 
 %BUILDDATE%
-1684529577
+1684971698
 
 %INSTALLDATE%
-1684551628
+1684983634
 
 %PACKAGER%
 gitforwindowshelper[bot] <gitforwindowshelper[bot]@users.noreply.github.com>
