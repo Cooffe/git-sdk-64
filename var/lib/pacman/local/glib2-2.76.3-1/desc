@@ -2,7 +2,7 @@
 glib2
 
 %VERSION%
-2.76.2-1
+2.76.3-1
 
 %BASE%
 glib2
@@ -17,16 +17,16 @@ https://gitlab.gnome.org/GNOME/glib
 x86_64
 
 %BUILDDATE%
-1684488871
+1685046263
 
 %INSTALLDATE%
-1684551627
+1685070012
 
 %PACKAGER%
-CI (msys2/msys2-autobuild/dfc132af/5022714641)
+CI (msys2/msys2-autobuild/13b6b27f/5084129034)
 
 %SIZE%
-12916267
+12916735
 
 %REASON%
 1
