@@ -938,6 +938,7 @@ void __attribute__((__cdecl__)) __attribute__ ((__noreturn__)) __fastfail(unsign
 extern __inline__ __attribute__((__always_inline__,__gnu_inline__)) void __attribute__((__cdecl__)) __attribute__ ((__noreturn__)) __fastfail(unsigned int code)
 {
   __asm__ __volatile__("int {$}0x29"::"c"(code));
+  __builtin_unreachable();
 }
 #define __MINGW_PREFETCH_IMPL !__has_builtin(__prefetch)
 const char *__mingw_get_crt_info (void);
@@ -3058,7 +3059,6 @@ unsigned long __attribute__((__cdecl__)) _lrotr(unsigned long,int);
   __extension__ char *__attribute__((__cdecl__)) ulltoa (unsigned long long , char *, int);
   __extension__ wchar_t *__attribute__((__cdecl__)) lltow (long long, wchar_t *, int);
   __extension__ wchar_t *__attribute__((__cdecl__)) ulltow (unsigned long long, wchar_t *, int);
-  __extension__ extern inline __attribute__((__gnu_inline__)) long long __attribute__((__cdecl__)) atoll (const char * _c) { return _atoi64 (_c); }
   __extension__ extern inline __attribute__((__gnu_inline__)) char *__attribute__((__cdecl__)) lltoa (long long _n, char * _c, int _i) { return _i64toa (_n, _c, _i); }
   __extension__ extern inline __attribute__((__gnu_inline__)) char *__attribute__((__cdecl__)) ulltoa (unsigned long long _n, char * _c, int _i) { return _ui64toa (_n, _c, _i); }
   __extension__ extern inline __attribute__((__gnu_inline__)) long long __attribute__((__cdecl__)) wtoll (const wchar_t * _w) { return _wtoi64 (_w); }
@@ -4103,8 +4103,8 @@ void rb_assert_failure(const char *file, int line, const char *name, const char 
   int __attribute__((__cdecl__)) _except_handler(struct _EXCEPTION_RECORD *_ExceptionRecord,void *_EstablisherFrame,struct _CONTEXT *_ContextRecord,void *_DispatcherContext);
 #define GetExceptionCode _exception_code
 #define exception_code _exception_code
-#define GetExceptionInformation (struct _EXCEPTION_POINTERS *)_exception_info
-#define exception_info (struct _EXCEPTION_POINTERS *)_exception_info
+#define GetExceptionInformation() ((struct _EXCEPTION_POINTERS *)_exception_info())
+#define exception_info() ((struct _EXCEPTION_POINTERS *)_exception_info())
 #define AbnormalTermination _abnormal_termination
 #define abnormal_termination _abnormal_termination
   unsigned long __attribute__((__cdecl__)) _exception_code(void);
@@ -43213,6 +43213,7 @@ typedef enum tagCOINITBASE {
 #undef interface
 #define interface struct
 #define __wtypesbase_h__ 
+#define __WIDL_INLINE __inline__
 #undef DEFINE_GUID
 #define DEFINE_GUID(name,l,w1,w2,b1,b2,b3,b4,b5,b6,b7,b8) EXTERN_C const GUID name
 #define DEFINE_OLEGUID(name,l,w1,w2) DEFINE_GUID (name, l, w1, w2, 0xc0, 0, 0, 0, 0, 0, 0, 0x46)
@@ -49768,6 +49769,76 @@ HRESULT __attribute__((__stdcall__)) IServiceProvider_QueryService_Stub(
 #undef interface
 #define interface struct
 #define __msxml_h__ 
+#define __IXMLDOMNode_FWD_DEFINED__ 
+typedef struct IXMLDOMNode IXMLDOMNode;
+#define __IXMLDOMDocument_FWD_DEFINED__ 
+typedef struct IXMLDOMDocument IXMLDOMDocument;
+#define __IXMLDOMNodeList_FWD_DEFINED__ 
+typedef struct IXMLDOMNodeList IXMLDOMNodeList;
+#define __IXMLDOMNamedNodeMap_FWD_DEFINED__ 
+typedef struct IXMLDOMNamedNodeMap IXMLDOMNamedNodeMap;
+#define __IXMLDOMDocumentFragment_FWD_DEFINED__ 
+typedef struct IXMLDOMDocumentFragment IXMLDOMDocumentFragment;
+#define __IXMLDOMCharacterData_FWD_DEFINED__ 
+typedef struct IXMLDOMCharacterData IXMLDOMCharacterData;
+#define __IXMLDOMAttribute_FWD_DEFINED__ 
+typedef struct IXMLDOMAttribute IXMLDOMAttribute;
+#define __IXMLDOMElement_FWD_DEFINED__ 
+typedef struct IXMLDOMElement IXMLDOMElement;
+#define __IXMLDOMText_FWD_DEFINED__ 
+typedef struct IXMLDOMText IXMLDOMText;
+#define __IXMLDOMComment_FWD_DEFINED__ 
+typedef struct IXMLDOMComment IXMLDOMComment;
+#define __IXMLDOMProcessingInstruction_FWD_DEFINED__ 
+typedef struct IXMLDOMProcessingInstruction IXMLDOMProcessingInstruction;
+#define __IXMLDOMCDATASection_FWD_DEFINED__ 
+typedef struct IXMLDOMCDATASection IXMLDOMCDATASection;
+#define __IXMLDOMDocumentType_FWD_DEFINED__ 
+typedef struct IXMLDOMDocumentType IXMLDOMDocumentType;
+#define __IXMLDOMNotation_FWD_DEFINED__ 
+typedef struct IXMLDOMNotation IXMLDOMNotation;
+#define __IXMLDOMEntity_FWD_DEFINED__ 
+typedef struct IXMLDOMEntity IXMLDOMEntity;
+#define __IXMLDOMEntityReference_FWD_DEFINED__ 
+typedef struct IXMLDOMEntityReference IXMLDOMEntityReference;
+#define __IXMLDOMImplementation_FWD_DEFINED__ 
+typedef struct IXMLDOMImplementation IXMLDOMImplementation;
+#define __IXMLDOMParseError_FWD_DEFINED__ 
+typedef struct IXMLDOMParseError IXMLDOMParseError;
+#define __XMLDOMDocumentEvents_FWD_DEFINED__ 
+typedef struct XMLDOMDocumentEvents XMLDOMDocumentEvents;
+#define __DOMDocument_FWD_DEFINED__ 
+typedef struct DOMDocument DOMDocument;
+#define __DOMFreeThreadedDocument_FWD_DEFINED__ 
+typedef struct DOMFreeThreadedDocument DOMFreeThreadedDocument;
+#define __IXMLHttpRequest_FWD_DEFINED__ 
+typedef struct IXMLHttpRequest IXMLHttpRequest;
+#define __XMLHTTPRequest_FWD_DEFINED__ 
+typedef struct XMLHTTPRequest XMLHTTPRequest;
+#define __IXMLDSOControl_FWD_DEFINED__ 
+typedef struct IXMLDSOControl IXMLDSOControl;
+#define __XMLDSOControl_FWD_DEFINED__ 
+typedef struct XMLDSOControl XMLDSOControl;
+#define __IXMLElementCollection_FWD_DEFINED__ 
+typedef struct IXMLElementCollection IXMLElementCollection;
+#define __IXMLElement_FWD_DEFINED__ 
+typedef struct IXMLElement IXMLElement;
+#define __IXMLDocument_FWD_DEFINED__ 
+typedef struct IXMLDocument IXMLDocument;
+#define __IXMLElement2_FWD_DEFINED__ 
+typedef struct IXMLElement2 IXMLElement2;
+#define __IXMLDocument2_FWD_DEFINED__ 
+typedef struct IXMLDocument2 IXMLDocument2;
+#define __IXMLAttribute_FWD_DEFINED__ 
+typedef struct IXMLAttribute IXMLAttribute;
+#define __IXMLError_FWD_DEFINED__ 
+typedef struct IXMLError IXMLError;
+#define __IXMLElementNotificationSink_FWD_DEFINED__ 
+typedef struct IXMLElementNotificationSink IXMLElementNotificationSink;
+#define __XMLDocument_FWD_DEFINED__ 
+typedef struct XMLDocument XMLDocument;
+#undef interface
+#define interface struct
 #undef interface
 #define interface struct
 #undef interface
@@ -52119,1736 +52190,3573 @@ ULONG __attribute__((__stdcall__)) CLEANLOCALSTORAGE_UserSize (ULONG *, ULONG, C
 unsigned char * __attribute__((__stdcall__)) CLEANLOCALSTORAGE_UserMarshal (ULONG *, unsigned char *, CLEANLOCALSTORAGE *);
 unsigned char * __attribute__((__stdcall__)) CLEANLOCALSTORAGE_UserUnmarshal(ULONG *, unsigned char *, CLEANLOCALSTORAGE *);
 void __attribute__((__stdcall__)) CLEANLOCALSTORAGE_UserFree (ULONG *, CLEANLOCALSTORAGE *);
-       
-#undef abort
-#define __IXMLDOMImplementation_FWD_DEFINED__ 
-typedef struct IXMLDOMImplementation IXMLDOMImplementation;
-#define __IXMLDOMNode_FWD_DEFINED__ 
-typedef struct IXMLDOMNode IXMLDOMNode;
-#define __IXMLDOMDocumentFragment_FWD_DEFINED__ 
-typedef struct IXMLDOMDocumentFragment IXMLDOMDocumentFragment;
-#define __IXMLDOMDocument_FWD_DEFINED__ 
-typedef struct IXMLDOMDocument IXMLDOMDocument;
-#define __IXMLDOMNodeList_FWD_DEFINED__ 
-typedef struct IXMLDOMNodeList IXMLDOMNodeList;
-#define __IXMLDOMNamedNodeMap_FWD_DEFINED__ 
-typedef struct IXMLDOMNamedNodeMap IXMLDOMNamedNodeMap;
-#define __IXMLDOMCharacterData_FWD_DEFINED__ 
-typedef struct IXMLDOMCharacterData IXMLDOMCharacterData;
-#define __IXMLDOMAttribute_FWD_DEFINED__ 
-typedef struct IXMLDOMAttribute IXMLDOMAttribute;
-#define __IXMLDOMElement_FWD_DEFINED__ 
-typedef struct IXMLDOMElement IXMLDOMElement;
-#define __IXMLDOMText_FWD_DEFINED__ 
-typedef struct IXMLDOMText IXMLDOMText;
-#define __IXMLDOMComment_FWD_DEFINED__ 
-typedef struct IXMLDOMComment IXMLDOMComment;
-#define __IXMLDOMProcessingInstruction_FWD_DEFINED__ 
-typedef struct IXMLDOMProcessingInstruction IXMLDOMProcessingInstruction;
-#define __IXMLDOMCDATASection_FWD_DEFINED__ 
-typedef struct IXMLDOMCDATASection IXMLDOMCDATASection;
-#define __IXMLDOMDocumentType_FWD_DEFINED__ 
-typedef struct IXMLDOMDocumentType IXMLDOMDocumentType;
-#define __IXMLDOMNotation_FWD_DEFINED__ 
-typedef struct IXMLDOMNotation IXMLDOMNotation;
-#define __IXMLDOMEntity_FWD_DEFINED__ 
-typedef struct IXMLDOMEntity IXMLDOMEntity;
-#define __IXMLDOMEntityReference_FWD_DEFINED__ 
-typedef struct IXMLDOMEntityReference IXMLDOMEntityReference;
-#define __IXMLDOMParseError_FWD_DEFINED__ 
-typedef struct IXMLDOMParseError IXMLDOMParseError;
-#define __IXTLRuntime_FWD_DEFINED__ 
-typedef struct IXTLRuntime IXTLRuntime;
-#define __XMLDOMDocumentEvents_FWD_DEFINED__ 
-typedef struct XMLDOMDocumentEvents XMLDOMDocumentEvents;
-#define __DOMDocument_FWD_DEFINED__ 
-typedef struct DOMDocument DOMDocument;
-#define __DOMFreeThreadedDocument_FWD_DEFINED__ 
-typedef struct DOMFreeThreadedDocument DOMFreeThreadedDocument;
-#define __IXMLHttpRequest_FWD_DEFINED__ 
-typedef struct IXMLHttpRequest IXMLHttpRequest;
-#define __XMLHTTPRequest_FWD_DEFINED__ 
-typedef struct XMLHTTPRequest XMLHTTPRequest;
-#define __IXMLDSOControl_FWD_DEFINED__ 
-typedef struct IXMLDSOControl IXMLDSOControl;
-#define __XMLDSOControl_FWD_DEFINED__ 
-typedef struct XMLDSOControl XMLDSOControl;
-#define __IXMLElementCollection_FWD_DEFINED__ 
-typedef struct IXMLElementCollection IXMLElementCollection;
-#define __IXMLDocument_FWD_DEFINED__ 
-typedef struct IXMLDocument IXMLDocument;
-#define __IXMLDocument2_FWD_DEFINED__ 
-typedef struct IXMLDocument2 IXMLDocument2;
-#define __IXMLElement_FWD_DEFINED__ 
-typedef struct IXMLElement IXMLElement;
-#define __IXMLElement2_FWD_DEFINED__ 
-typedef struct IXMLElement2 IXMLElement2;
-#define __IXMLAttribute_FWD_DEFINED__ 
-typedef struct IXMLAttribute IXMLAttribute;
-#define __IXMLError_FWD_DEFINED__ 
-typedef struct IXMLError IXMLError;
-#define __XMLDocument_FWD_DEFINED__ 
-typedef struct XMLDocument XMLDocument;
-  typedef struct _xml_error {
-    unsigned int _nLine;
+#define __MSXML_LIBRARY_DEFINED__ 
+extern const GUID LIBID_MSXML;
+#define __MSXML_DOMNODETYPE_DEFINED 
+typedef enum tagDOMNodeType {
+    NODE_INVALID = 0,
+    NODE_ELEMENT = 1,
+    NODE_ATTRIBUTE = 2,
+    NODE_TEXT = 3,
+    NODE_CDATA_SECTION = 4,
+    NODE_ENTITY_REFERENCE = 5,
+    NODE_ENTITY = 6,
+    NODE_PROCESSING_INSTRUCTION = 7,
+    NODE_COMMENT = 8,
+    NODE_DOCUMENT = 9,
+    NODE_DOCUMENT_TYPE = 10,
+    NODE_DOCUMENT_FRAGMENT = 11,
+    NODE_NOTATION = 12
+} DOMNodeType;
+#define __IXMLDOMNode_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMNode;
+typedef struct IXMLDOMNodeVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMNode *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMNode *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMNode *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMNode *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMNode *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMNode *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMNode *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMNode *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMNode *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMNode *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMNode *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMNode *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMNode *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMNode *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMNode *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMNode *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMNode *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMNode *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMNode *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMNode *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMNode *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMNode *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMNode *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMNode *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMNode *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMNode *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMNode *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMNode *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMNode *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMNode *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMNode *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMNode *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMNode *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMNode *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMNode *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMNode *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMNode *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMNode *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMNode *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMNode *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMNode *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMNode *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMNode *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+   
+} IXMLDOMNodeVtbl;
+struct IXMLDOMNode {
+    IXMLDOMNodeVtbl* lpVtbl;
+};
+#define __IXMLDOMDocument_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMDocument;
+typedef struct IXMLDOMDocumentVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMDocument *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMDocument *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMDocument *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMDocument *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMDocument *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMDocument *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMDocument *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMDocument *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMDocument *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMDocument *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMDocument *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMDocument *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMDocument *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMDocument *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMDocument *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMDocument *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMDocument *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMDocument *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMDocument *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMDocument *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMDocument *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMDocument *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMDocument *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMDocument *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMDocument *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMDocument *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMDocument *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMDocument *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMDocument *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMDocument *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMDocument *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMDocument *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMDocument *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMDocument *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMDocument *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMDocument *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMDocument *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMDocument *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMDocument *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMDocument *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMDocument *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMDocument *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMDocument *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+    HRESULT (__attribute__((__stdcall__)) *get_doctype)(
+        IXMLDOMDocument *This,
+        IXMLDOMDocumentType **documentType);
+    HRESULT (__attribute__((__stdcall__)) *get_implementation)(
+        IXMLDOMDocument *This,
+        IXMLDOMImplementation **impl);
+    HRESULT (__attribute__((__stdcall__)) *get_documentElement)(
+        IXMLDOMDocument *This,
+        IXMLDOMElement **DOMElement);
+    HRESULT (__attribute__((__stdcall__)) *putref_documentElement)(
+        IXMLDOMDocument *This,
+        IXMLDOMElement *DOMElement);
+    HRESULT (__attribute__((__stdcall__)) *createElement)(
+        IXMLDOMDocument *This,
+        BSTR tagname,
+        IXMLDOMElement **element);
+    HRESULT (__attribute__((__stdcall__)) *createDocumentFragment)(
+        IXMLDOMDocument *This,
+        IXMLDOMDocumentFragment **docFrag);
+    HRESULT (__attribute__((__stdcall__)) *createTextNode)(
+        IXMLDOMDocument *This,
+        BSTR data,
+        IXMLDOMText **text);
+    HRESULT (__attribute__((__stdcall__)) *createComment)(
+        IXMLDOMDocument *This,
+        BSTR data,
+        IXMLDOMComment **comment);
+    HRESULT (__attribute__((__stdcall__)) *createCDATASection)(
+        IXMLDOMDocument *This,
+        BSTR data,
+        IXMLDOMCDATASection **cdata);
+    HRESULT (__attribute__((__stdcall__)) *createProcessingInstruction)(
+        IXMLDOMDocument *This,
+        BSTR target,
+        BSTR data,
+        IXMLDOMProcessingInstruction **pi);
+    HRESULT (__attribute__((__stdcall__)) *createAttribute)(
+        IXMLDOMDocument *This,
+        BSTR name,
+        IXMLDOMAttribute **attribute);
+    HRESULT (__attribute__((__stdcall__)) *createEntityReference)(
+        IXMLDOMDocument *This,
+        BSTR name,
+        IXMLDOMEntityReference **entityRef);
+    HRESULT (__attribute__((__stdcall__)) *getElementsByTagName)(
+        IXMLDOMDocument *This,
+        BSTR tagName,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *createNode)(
+        IXMLDOMDocument *This,
+        VARIANT Type,
+        BSTR name,
+        BSTR namespaceURI,
+        IXMLDOMNode **node);
+    HRESULT (__attribute__((__stdcall__)) *nodeFromID)(
+        IXMLDOMDocument *This,
+        BSTR idString,
+        IXMLDOMNode **node);
+    HRESULT (__attribute__((__stdcall__)) *load)(
+        IXMLDOMDocument *This,
+        VARIANT xmlSource,
+        VARIANT_BOOL *isSuccessful);
+    HRESULT (__attribute__((__stdcall__)) *get_readyState)(
+        IXMLDOMDocument *This,
+        LONG *value);
+    HRESULT (__attribute__((__stdcall__)) *get_parseError)(
+        IXMLDOMDocument *This,
+        IXMLDOMParseError **errorObj);
+    HRESULT (__attribute__((__stdcall__)) *get_url)(
+        IXMLDOMDocument *This,
+        BSTR *urlString);
+    HRESULT (__attribute__((__stdcall__)) *get_async)(
+        IXMLDOMDocument *This,
+        VARIANT_BOOL *isAsync);
+    HRESULT (__attribute__((__stdcall__)) *put_async)(
+        IXMLDOMDocument *This,
+        VARIANT_BOOL isAsync);
+    HRESULT (__attribute__((__stdcall__)) *abort)(
+        IXMLDOMDocument *This);
+    HRESULT (__attribute__((__stdcall__)) *loadXML)(
+        IXMLDOMDocument *This,
+        BSTR bstrXML,
+        VARIANT_BOOL *isSuccessful);
+    HRESULT (__attribute__((__stdcall__)) *save)(
+        IXMLDOMDocument *This,
+        VARIANT destination);
+    HRESULT (__attribute__((__stdcall__)) *get_validateOnParse)(
+        IXMLDOMDocument *This,
+        VARIANT_BOOL *isValidating);
+    HRESULT (__attribute__((__stdcall__)) *put_validateOnParse)(
+        IXMLDOMDocument *This,
+        VARIANT_BOOL isValidating);
+    HRESULT (__attribute__((__stdcall__)) *get_resolveExternals)(
+        IXMLDOMDocument *This,
+        VARIANT_BOOL *isResolving);
+    HRESULT (__attribute__((__stdcall__)) *put_resolveExternals)(
+        IXMLDOMDocument *This,
+        VARIANT_BOOL isValidating);
+    HRESULT (__attribute__((__stdcall__)) *get_preserveWhiteSpace)(
+        IXMLDOMDocument *This,
+        VARIANT_BOOL *isPreserving);
+    HRESULT (__attribute__((__stdcall__)) *put_preserveWhiteSpace)(
+        IXMLDOMDocument *This,
+        VARIANT_BOOL isPreserving);
+    HRESULT (__attribute__((__stdcall__)) *put_onreadystatechange)(
+        IXMLDOMDocument *This,
+        VARIANT readystatechangeSink);
+    HRESULT (__attribute__((__stdcall__)) *put_ondataavailable)(
+        IXMLDOMDocument *This,
+        VARIANT ondataavailableSink);
+    HRESULT (__attribute__((__stdcall__)) *put_ontransformnode)(
+        IXMLDOMDocument *This,
+        VARIANT ontransformnodeSink);
+   
+} IXMLDOMDocumentVtbl;
+struct IXMLDOMDocument {
+    IXMLDOMDocumentVtbl* lpVtbl;
+};
+#define __IXMLDOMNodeList_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMNodeList;
+typedef struct IXMLDOMNodeListVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMNodeList *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMNodeList *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMNodeList *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMNodeList *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMNodeList *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMNodeList *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMNodeList *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_item)(
+        IXMLDOMNodeList *This,
+        LONG index,
+        IXMLDOMNode **listItem);
+    HRESULT (__attribute__((__stdcall__)) *get_length)(
+        IXMLDOMNodeList *This,
+        LONG *listLength);
+    HRESULT (__attribute__((__stdcall__)) *nextNode)(
+        IXMLDOMNodeList *This,
+        IXMLDOMNode **nextItem);
+    HRESULT (__attribute__((__stdcall__)) *reset)(
+        IXMLDOMNodeList *This);
+    HRESULT (__attribute__((__stdcall__)) *_newEnum)(
+        IXMLDOMNodeList *This,
+        IUnknown **ppUnk);
+   
+} IXMLDOMNodeListVtbl;
+struct IXMLDOMNodeList {
+    IXMLDOMNodeListVtbl* lpVtbl;
+};
+#define __IXMLDOMNamedNodeMap_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMNamedNodeMap;
+typedef struct IXMLDOMNamedNodeMapVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMNamedNodeMap *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMNamedNodeMap *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMNamedNodeMap *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMNamedNodeMap *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMNamedNodeMap *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMNamedNodeMap *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMNamedNodeMap *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *getNamedItem)(
+        IXMLDOMNamedNodeMap *This,
+        BSTR name,
+        IXMLDOMNode **namedItem);
+    HRESULT (__attribute__((__stdcall__)) *setNamedItem)(
+        IXMLDOMNamedNodeMap *This,
+        IXMLDOMNode *newItem,
+        IXMLDOMNode **namedItem);
+    HRESULT (__attribute__((__stdcall__)) *removeNamedItem)(
+        IXMLDOMNamedNodeMap *This,
+        BSTR name,
+        IXMLDOMNode **namedItem);
+    HRESULT (__attribute__((__stdcall__)) *get_item)(
+        IXMLDOMNamedNodeMap *This,
+        LONG index,
+        IXMLDOMNode **listItem);
+    HRESULT (__attribute__((__stdcall__)) *get_length)(
+        IXMLDOMNamedNodeMap *This,
+        LONG *listLength);
+    HRESULT (__attribute__((__stdcall__)) *getQualifiedItem)(
+        IXMLDOMNamedNodeMap *This,
+        BSTR baseName,
+        BSTR namespaceURI,
+        IXMLDOMNode **qualifiedItem);
+    HRESULT (__attribute__((__stdcall__)) *removeQualifiedItem)(
+        IXMLDOMNamedNodeMap *This,
+        BSTR baseName,
+        BSTR namespaceURI,
+        IXMLDOMNode **qualifiedItem);
+    HRESULT (__attribute__((__stdcall__)) *nextNode)(
+        IXMLDOMNamedNodeMap *This,
+        IXMLDOMNode **nextItem);
+    HRESULT (__attribute__((__stdcall__)) *reset)(
+        IXMLDOMNamedNodeMap *This);
+    HRESULT (__attribute__((__stdcall__)) *_newEnum)(
+        IXMLDOMNamedNodeMap *This,
+        IUnknown **ppUnk);
+   
+} IXMLDOMNamedNodeMapVtbl;
+struct IXMLDOMNamedNodeMap {
+    IXMLDOMNamedNodeMapVtbl* lpVtbl;
+};
+#define __IXMLDOMDocumentFragment_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMDocumentFragment;
+typedef struct IXMLDOMDocumentFragmentVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMDocumentFragment *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMDocumentFragment *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMDocumentFragment *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMDocumentFragment *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMDocumentFragment *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMDocumentFragment *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMDocumentFragment *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMDocumentFragment *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMDocumentFragment *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMDocumentFragment *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMDocumentFragment *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMDocumentFragment *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMDocumentFragment *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMDocumentFragment *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMDocumentFragment *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMDocumentFragment *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMDocumentFragment *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMDocumentFragment *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMDocumentFragment *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMDocumentFragment *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMDocumentFragment *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMDocumentFragment *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMDocumentFragment *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMDocumentFragment *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMDocumentFragment *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMDocumentFragment *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMDocumentFragment *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMDocumentFragment *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMDocumentFragment *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+   
+} IXMLDOMDocumentFragmentVtbl;
+struct IXMLDOMDocumentFragment {
+    IXMLDOMDocumentFragmentVtbl* lpVtbl;
+};
+#define __IXMLDOMCharacterData_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMCharacterData;
+typedef struct IXMLDOMCharacterDataVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMCharacterData *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMCharacterData *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMCharacterData *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMCharacterData *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMCharacterData *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMCharacterData *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMCharacterData *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMCharacterData *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMCharacterData *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMCharacterData *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMCharacterData *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMCharacterData *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMCharacterData *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMCharacterData *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMCharacterData *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMCharacterData *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMCharacterData *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMCharacterData *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMCharacterData *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMCharacterData *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMCharacterData *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMCharacterData *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMCharacterData *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMCharacterData *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMCharacterData *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMCharacterData *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMCharacterData *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMCharacterData *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMCharacterData *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+    HRESULT (__attribute__((__stdcall__)) *get_data)(
+        IXMLDOMCharacterData *This,
+        BSTR *data);
+    HRESULT (__attribute__((__stdcall__)) *put_data)(
+        IXMLDOMCharacterData *This,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *get_length)(
+        IXMLDOMCharacterData *This,
+        LONG *dataLength);
+    HRESULT (__attribute__((__stdcall__)) *substringData)(
+        IXMLDOMCharacterData *This,
+        LONG offset,
+        LONG count,
+        BSTR *data);
+    HRESULT (__attribute__((__stdcall__)) *appendData)(
+        IXMLDOMCharacterData *This,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *insertData)(
+        IXMLDOMCharacterData *This,
+        LONG offset,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *deleteData)(
+        IXMLDOMCharacterData *This,
+        LONG offset,
+        LONG count);
+    HRESULT (__attribute__((__stdcall__)) *replaceData)(
+        IXMLDOMCharacterData *This,
+        LONG offset,
+        LONG count,
+        BSTR data);
+   
+} IXMLDOMCharacterDataVtbl;
+struct IXMLDOMCharacterData {
+    IXMLDOMCharacterDataVtbl* lpVtbl;
+};
+#define __IXMLDOMAttribute_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMAttribute;
+typedef struct IXMLDOMAttributeVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMAttribute *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMAttribute *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMAttribute *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMAttribute *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMAttribute *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMAttribute *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMAttribute *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMAttribute *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMAttribute *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMAttribute *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMAttribute *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMAttribute *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMAttribute *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMAttribute *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMAttribute *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMAttribute *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMAttribute *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMAttribute *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMAttribute *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMAttribute *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMAttribute *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMAttribute *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMAttribute *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMAttribute *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMAttribute *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMAttribute *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMAttribute *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMAttribute *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMAttribute *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMAttribute *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+    HRESULT (__attribute__((__stdcall__)) *get_name)(
+        IXMLDOMAttribute *This,
+        BSTR *attributeName);
+    HRESULT (__attribute__((__stdcall__)) *get_value)(
+        IXMLDOMAttribute *This,
+        VARIANT *attributeValue);
+    HRESULT (__attribute__((__stdcall__)) *put_value)(
+        IXMLDOMAttribute *This,
+        VARIANT attributeValue);
+   
+} IXMLDOMAttributeVtbl;
+struct IXMLDOMAttribute {
+    IXMLDOMAttributeVtbl* lpVtbl;
+};
+#define __IXMLDOMElement_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMElement;
+typedef struct IXMLDOMElementVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMElement *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMElement *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMElement *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMElement *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMElement *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMElement *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMElement *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMElement *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMElement *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMElement *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMElement *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMElement *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMElement *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMElement *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMElement *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMElement *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMElement *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMElement *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMElement *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMElement *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMElement *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMElement *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMElement *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMElement *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMElement *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMElement *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMElement *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMElement *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMElement *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMElement *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMElement *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMElement *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMElement *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMElement *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMElement *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMElement *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMElement *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMElement *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMElement *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMElement *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMElement *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMElement *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMElement *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+    HRESULT (__attribute__((__stdcall__)) *get_tagName)(
+        IXMLDOMElement *This,
+        BSTR *tagName);
+    HRESULT (__attribute__((__stdcall__)) *getAttribute)(
+        IXMLDOMElement *This,
+        BSTR name,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *setAttribute)(
+        IXMLDOMElement *This,
+        BSTR name,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *removeAttribute)(
+        IXMLDOMElement *This,
+        BSTR name);
+    HRESULT (__attribute__((__stdcall__)) *getAttributeNode)(
+        IXMLDOMElement *This,
+        BSTR name,
+        IXMLDOMAttribute **attributeNode);
+    HRESULT (__attribute__((__stdcall__)) *setAttributeNode)(
+        IXMLDOMElement *This,
+        IXMLDOMAttribute *DOMAttribute,
+        IXMLDOMAttribute **attributeNode);
+    HRESULT (__attribute__((__stdcall__)) *removeAttributeNode)(
+        IXMLDOMElement *This,
+        IXMLDOMAttribute *DOMAttribute,
+        IXMLDOMAttribute **attributeNode);
+    HRESULT (__attribute__((__stdcall__)) *getElementsByTagName)(
+        IXMLDOMElement *This,
+        BSTR tagName,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *normalize)(
+        IXMLDOMElement *This);
+   
+} IXMLDOMElementVtbl;
+struct IXMLDOMElement {
+    IXMLDOMElementVtbl* lpVtbl;
+};
+#define __IXMLDOMText_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMText;
+typedef struct IXMLDOMTextVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMText *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMText *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMText *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMText *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMText *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMText *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMText *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMText *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMText *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMText *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMText *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMText *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMText *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMText *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMText *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMText *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMText *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMText *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMText *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMText *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMText *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMText *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMText *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMText *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMText *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMText *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMText *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMText *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMText *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMText *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMText *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMText *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMText *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMText *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMText *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMText *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMText *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMText *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMText *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMText *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMText *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMText *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMText *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+    HRESULT (__attribute__((__stdcall__)) *get_data)(
+        IXMLDOMText *This,
+        BSTR *data);
+    HRESULT (__attribute__((__stdcall__)) *put_data)(
+        IXMLDOMText *This,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *get_length)(
+        IXMLDOMText *This,
+        LONG *dataLength);
+    HRESULT (__attribute__((__stdcall__)) *substringData)(
+        IXMLDOMText *This,
+        LONG offset,
+        LONG count,
+        BSTR *data);
+    HRESULT (__attribute__((__stdcall__)) *appendData)(
+        IXMLDOMText *This,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *insertData)(
+        IXMLDOMText *This,
+        LONG offset,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *deleteData)(
+        IXMLDOMText *This,
+        LONG offset,
+        LONG count);
+    HRESULT (__attribute__((__stdcall__)) *replaceData)(
+        IXMLDOMText *This,
+        LONG offset,
+        LONG count,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *splitText)(
+        IXMLDOMText *This,
+        LONG offset,
+        IXMLDOMText **rightHandTextNode);
+   
+} IXMLDOMTextVtbl;
+struct IXMLDOMText {
+    IXMLDOMTextVtbl* lpVtbl;
+};
+#define __IXMLDOMComment_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMComment;
+typedef struct IXMLDOMCommentVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMComment *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMComment *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMComment *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMComment *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMComment *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMComment *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMComment *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMComment *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMComment *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMComment *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMComment *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMComment *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMComment *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMComment *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMComment *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMComment *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMComment *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMComment *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMComment *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMComment *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMComment *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMComment *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMComment *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMComment *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMComment *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMComment *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMComment *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMComment *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMComment *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMComment *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMComment *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMComment *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMComment *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMComment *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMComment *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMComment *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMComment *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMComment *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMComment *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMComment *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMComment *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMComment *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMComment *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+    HRESULT (__attribute__((__stdcall__)) *get_data)(
+        IXMLDOMComment *This,
+        BSTR *data);
+    HRESULT (__attribute__((__stdcall__)) *put_data)(
+        IXMLDOMComment *This,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *get_length)(
+        IXMLDOMComment *This,
+        LONG *dataLength);
+    HRESULT (__attribute__((__stdcall__)) *substringData)(
+        IXMLDOMComment *This,
+        LONG offset,
+        LONG count,
+        BSTR *data);
+    HRESULT (__attribute__((__stdcall__)) *appendData)(
+        IXMLDOMComment *This,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *insertData)(
+        IXMLDOMComment *This,
+        LONG offset,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *deleteData)(
+        IXMLDOMComment *This,
+        LONG offset,
+        LONG count);
+    HRESULT (__attribute__((__stdcall__)) *replaceData)(
+        IXMLDOMComment *This,
+        LONG offset,
+        LONG count,
+        BSTR data);
+   
+} IXMLDOMCommentVtbl;
+struct IXMLDOMComment {
+    IXMLDOMCommentVtbl* lpVtbl;
+};
+#define __IXMLDOMProcessingInstruction_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMProcessingInstruction;
+typedef struct IXMLDOMProcessingInstructionVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMProcessingInstruction *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMProcessingInstruction *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMProcessingInstruction *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMProcessingInstruction *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMProcessingInstruction *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMProcessingInstruction *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMProcessingInstruction *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMProcessingInstruction *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMProcessingInstruction *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMProcessingInstruction *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMProcessingInstruction *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMProcessingInstruction *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMProcessingInstruction *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMProcessingInstruction *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMProcessingInstruction *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMProcessingInstruction *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMProcessingInstruction *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMProcessingInstruction *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+    HRESULT (__attribute__((__stdcall__)) *get_target)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_data)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR *value);
+    HRESULT (__attribute__((__stdcall__)) *put_data)(
+        IXMLDOMProcessingInstruction *This,
+        BSTR value);
+   
+} IXMLDOMProcessingInstructionVtbl;
+struct IXMLDOMProcessingInstruction {
+    IXMLDOMProcessingInstructionVtbl* lpVtbl;
+};
+#define __IXMLDOMCDATASection_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMCDATASection;
+typedef struct IXMLDOMCDATASectionVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMCDATASection *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMCDATASection *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMCDATASection *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMCDATASection *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMCDATASection *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMCDATASection *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMCDATASection *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMCDATASection *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMCDATASection *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMCDATASection *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMCDATASection *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMCDATASection *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMCDATASection *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMCDATASection *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMCDATASection *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMCDATASection *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMCDATASection *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMCDATASection *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMCDATASection *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMCDATASection *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMCDATASection *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMCDATASection *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMCDATASection *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMCDATASection *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMCDATASection *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMCDATASection *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMCDATASection *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMCDATASection *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMCDATASection *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+    HRESULT (__attribute__((__stdcall__)) *get_data)(
+        IXMLDOMCDATASection *This,
+        BSTR *data);
+    HRESULT (__attribute__((__stdcall__)) *put_data)(
+        IXMLDOMCDATASection *This,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *get_length)(
+        IXMLDOMCDATASection *This,
+        LONG *dataLength);
+    HRESULT (__attribute__((__stdcall__)) *substringData)(
+        IXMLDOMCDATASection *This,
+        LONG offset,
+        LONG count,
+        BSTR *data);
+    HRESULT (__attribute__((__stdcall__)) *appendData)(
+        IXMLDOMCDATASection *This,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *insertData)(
+        IXMLDOMCDATASection *This,
+        LONG offset,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *deleteData)(
+        IXMLDOMCDATASection *This,
+        LONG offset,
+        LONG count);
+    HRESULT (__attribute__((__stdcall__)) *replaceData)(
+        IXMLDOMCDATASection *This,
+        LONG offset,
+        LONG count,
+        BSTR data);
+    HRESULT (__attribute__((__stdcall__)) *splitText)(
+        IXMLDOMCDATASection *This,
+        LONG offset,
+        IXMLDOMText **rightHandTextNode);
+   
+} IXMLDOMCDATASectionVtbl;
+struct IXMLDOMCDATASection {
+    IXMLDOMCDATASectionVtbl* lpVtbl;
+};
+#define __IXMLDOMDocumentType_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMDocumentType;
+typedef struct IXMLDOMDocumentTypeVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMDocumentType *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMDocumentType *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMDocumentType *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMDocumentType *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMDocumentType *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMDocumentType *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMDocumentType *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMDocumentType *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMDocumentType *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMDocumentType *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMDocumentType *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMDocumentType *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMDocumentType *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMDocumentType *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMDocumentType *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMDocumentType *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMDocumentType *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMDocumentType *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMDocumentType *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMDocumentType *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMDocumentType *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMDocumentType *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMDocumentType *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMDocumentType *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMDocumentType *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMDocumentType *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMDocumentType *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMDocumentType *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+    HRESULT (__attribute__((__stdcall__)) *get_name)(
+        IXMLDOMDocumentType *This,
+        BSTR *rootName);
+    HRESULT (__attribute__((__stdcall__)) *get_entities)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNamedNodeMap **entityMap);
+    HRESULT (__attribute__((__stdcall__)) *get_notations)(
+        IXMLDOMDocumentType *This,
+        IXMLDOMNamedNodeMap **notationMap);
+   
+} IXMLDOMDocumentTypeVtbl;
+struct IXMLDOMDocumentType {
+    IXMLDOMDocumentTypeVtbl* lpVtbl;
+};
+#define __IXMLDOMNotation_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMNotation;
+typedef struct IXMLDOMNotationVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMNotation *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMNotation *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMNotation *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMNotation *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMNotation *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMNotation *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMNotation *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMNotation *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMNotation *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMNotation *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMNotation *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMNotation *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMNotation *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMNotation *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMNotation *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMNotation *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMNotation *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMNotation *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMNotation *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMNotation *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMNotation *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMNotation *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMNotation *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMNotation *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMNotation *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMNotation *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMNotation *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMNotation *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMNotation *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMNotation *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMNotation *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMNotation *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMNotation *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMNotation *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMNotation *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMNotation *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMNotation *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMNotation *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMNotation *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMNotation *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMNotation *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMNotation *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMNotation *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+    HRESULT (__attribute__((__stdcall__)) *get_publicId)(
+        IXMLDOMNotation *This,
+        VARIANT *publicId);
+    HRESULT (__attribute__((__stdcall__)) *get_systemId)(
+        IXMLDOMNotation *This,
+        VARIANT *systemId);
+   
+} IXMLDOMNotationVtbl;
+struct IXMLDOMNotation {
+    IXMLDOMNotationVtbl* lpVtbl;
+};
+#define __IXMLDOMEntity_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMEntity;
+typedef struct IXMLDOMEntityVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMEntity *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMEntity *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMEntity *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMEntity *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMEntity *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMEntity *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMEntity *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMEntity *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMEntity *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMEntity *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMEntity *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMEntity *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMEntity *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMEntity *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMEntity *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMEntity *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMEntity *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMEntity *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMEntity *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMEntity *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMEntity *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMEntity *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMEntity *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMEntity *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMEntity *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMEntity *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMEntity *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMEntity *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMEntity *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMEntity *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMEntity *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMEntity *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMEntity *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMEntity *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMEntity *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMEntity *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMEntity *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMEntity *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMEntity *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMEntity *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMEntity *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMEntity *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMEntity *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+    HRESULT (__attribute__((__stdcall__)) *get_publicId)(
+        IXMLDOMEntity *This,
+        VARIANT *publicId);
+    HRESULT (__attribute__((__stdcall__)) *get_systemId)(
+        IXMLDOMEntity *This,
+        VARIANT *systemId);
+    HRESULT (__attribute__((__stdcall__)) *get_notationName)(
+        IXMLDOMEntity *This,
+        BSTR *name);
+   
+} IXMLDOMEntityVtbl;
+struct IXMLDOMEntity {
+    IXMLDOMEntityVtbl* lpVtbl;
+};
+#define __IXMLDOMEntityReference_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMEntityReference;
+typedef struct IXMLDOMEntityReferenceVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMEntityReference *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMEntityReference *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMEntityReference *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMEntityReference *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMEntityReference *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMEntityReference *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMEntityReference *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeName)(
+        IXMLDOMEntityReference *This,
+        BSTR *name);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(
+        IXMLDOMEntityReference *This,
+        VARIANT *value);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(
+        IXMLDOMEntityReference *This,
+        VARIANT value);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeType)(
+        IXMLDOMEntityReference *This,
+        DOMNodeType *type);
+    HRESULT (__attribute__((__stdcall__)) *get_parentNode)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNode **parent);
+    HRESULT (__attribute__((__stdcall__)) *get_childNodes)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNodeList **childList);
+    HRESULT (__attribute__((__stdcall__)) *get_firstChild)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNode **firstChild);
+    HRESULT (__attribute__((__stdcall__)) *get_lastChild)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNode **lastChild);
+    HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNode **previousSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNode **nextSibling);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNamedNodeMap **attributeMap);
+    HRESULT (__attribute__((__stdcall__)) *insertBefore)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNode *newChild,
+        VARIANT refChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *replaceChild)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode *oldChild,
+        IXMLDOMNode **outOldChild);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNode *childNode,
+        IXMLDOMNode **oldChild);
+    HRESULT (__attribute__((__stdcall__)) *appendChild)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNode *newChild,
+        IXMLDOMNode **outNewChild);
+    HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(
+        IXMLDOMEntityReference *This,
+        VARIANT_BOOL *hasChild);
+    HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMDocument **DOMDocument);
+    HRESULT (__attribute__((__stdcall__)) *cloneNode)(
+        IXMLDOMEntityReference *This,
+        VARIANT_BOOL deep,
+        IXMLDOMNode **cloneRoot);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(
+        IXMLDOMEntityReference *This,
+        BSTR *nodeType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLDOMEntityReference *This,
+        BSTR *text);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLDOMEntityReference *This,
+        BSTR text);
+    HRESULT (__attribute__((__stdcall__)) *get_specified)(
+        IXMLDOMEntityReference *This,
+        VARIANT_BOOL *isSpecified);
+    HRESULT (__attribute__((__stdcall__)) *get_definition)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNode **definitionNode);
+    HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(
+        IXMLDOMEntityReference *This,
+        VARIANT *typedValue);
+    HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(
+        IXMLDOMEntityReference *This,
+        VARIANT typedValue);
+    HRESULT (__attribute__((__stdcall__)) *get_dataType)(
+        IXMLDOMEntityReference *This,
+        VARIANT *dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *put_dataType)(
+        IXMLDOMEntityReference *This,
+        BSTR dataTypeName);
+    HRESULT (__attribute__((__stdcall__)) *get_xml)(
+        IXMLDOMEntityReference *This,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *transformNode)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNode *styleSheet,
+        BSTR *xmlString);
+    HRESULT (__attribute__((__stdcall__)) *selectNodes)(
+        IXMLDOMEntityReference *This,
+        BSTR queryString,
+        IXMLDOMNodeList **resultList);
+    HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(
+        IXMLDOMEntityReference *This,
+        BSTR queryString,
+        IXMLDOMNode **resultNode);
+    HRESULT (__attribute__((__stdcall__)) *get_parsed)(
+        IXMLDOMEntityReference *This,
+        VARIANT_BOOL *isParsed);
+    HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(
+        IXMLDOMEntityReference *This,
+        BSTR *namespaceURI);
+    HRESULT (__attribute__((__stdcall__)) *get_prefix)(
+        IXMLDOMEntityReference *This,
+        BSTR *prefixString);
+    HRESULT (__attribute__((__stdcall__)) *get_baseName)(
+        IXMLDOMEntityReference *This,
+        BSTR *nameString);
+    HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(
+        IXMLDOMEntityReference *This,
+        IXMLDOMNode *stylesheet,
+        VARIANT outputObject);
+   
+} IXMLDOMEntityReferenceVtbl;
+struct IXMLDOMEntityReference {
+    IXMLDOMEntityReferenceVtbl* lpVtbl;
+};
+#define __IXMLDOMImplementation_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMImplementation;
+typedef struct IXMLDOMImplementationVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMImplementation *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMImplementation *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMImplementation *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMImplementation *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMImplementation *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMImplementation *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMImplementation *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *hasFeature)(
+        IXMLDOMImplementation *This,
+        BSTR feature,
+        BSTR version,
+        VARIANT_BOOL *pbool);
+   
+} IXMLDOMImplementationVtbl;
+struct IXMLDOMImplementation {
+    IXMLDOMImplementationVtbl* lpVtbl;
+};
+#define __IXMLDOMParseError_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDOMParseError;
+typedef struct IXMLDOMParseErrorVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDOMParseError *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDOMParseError *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDOMParseError *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDOMParseError *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDOMParseError *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDOMParseError *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDOMParseError *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_errorCode)(
+        IXMLDOMParseError *This,
+        LONG *errCode);
+    HRESULT (__attribute__((__stdcall__)) *get_url)(
+        IXMLDOMParseError *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_reason)(
+        IXMLDOMParseError *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_srcText)(
+        IXMLDOMParseError *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_line)(
+        IXMLDOMParseError *This,
+        LONG *lineNo);
+    HRESULT (__attribute__((__stdcall__)) *get_linepos)(
+        IXMLDOMParseError *This,
+        LONG *linePos);
+    HRESULT (__attribute__((__stdcall__)) *get_filepos)(
+        IXMLDOMParseError *This,
+        LONG *filePos);
+   
+} IXMLDOMParseErrorVtbl;
+struct IXMLDOMParseError {
+    IXMLDOMParseErrorVtbl* lpVtbl;
+};
+#define __XMLDOMDocumentEvents_DISPINTERFACE_DEFINED__ 
+extern const GUID DIID_XMLDOMDocumentEvents;
+typedef struct XMLDOMDocumentEventsVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        XMLDOMDocumentEvents *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        XMLDOMDocumentEvents *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        XMLDOMDocumentEvents *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        XMLDOMDocumentEvents *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        XMLDOMDocumentEvents *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        XMLDOMDocumentEvents *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        XMLDOMDocumentEvents *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+   
+} XMLDOMDocumentEventsVtbl;
+struct XMLDOMDocumentEvents {
+    XMLDOMDocumentEventsVtbl* lpVtbl;
+};
+extern const GUID CLSID_DOMDocument;
+extern const GUID CLSID_DOMFreeThreadedDocument;
+#define __IXMLHttpRequest_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLHttpRequest;
+typedef struct IXMLHttpRequestVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLHttpRequest *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLHttpRequest *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLHttpRequest *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLHttpRequest *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLHttpRequest *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLHttpRequest *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLHttpRequest *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *open)(
+        IXMLHttpRequest *This,
+        BSTR bstrMethod,
+        BSTR bstrUrl,
+        VARIANT varAsync,
+        VARIANT varUser,
+        VARIANT varPassword);
+    HRESULT (__attribute__((__stdcall__)) *setRequestHeader)(
+        IXMLHttpRequest *This,
+        BSTR bstrHeader,
+        BSTR bstrValue);
+    HRESULT (__attribute__((__stdcall__)) *getResponseHeader)(
+        IXMLHttpRequest *This,
+        BSTR bstrHeader,
+        BSTR *pbstrValue);
+    HRESULT (__attribute__((__stdcall__)) *getAllResponseHeaders)(
+        IXMLHttpRequest *This,
+        BSTR *pbstrHeaders);
+    HRESULT (__attribute__((__stdcall__)) *send)(
+        IXMLHttpRequest *This,
+        VARIANT varBody);
+    HRESULT (__attribute__((__stdcall__)) *abort)(
+        IXMLHttpRequest *This);
+    HRESULT (__attribute__((__stdcall__)) *get_status)(
+        IXMLHttpRequest *This,
+        LONG *plStatus);
+    HRESULT (__attribute__((__stdcall__)) *get_statusText)(
+        IXMLHttpRequest *This,
+        BSTR *bstrStatus);
+    HRESULT (__attribute__((__stdcall__)) *get_responseXML)(
+        IXMLHttpRequest *This,
+        IDispatch **ppBody);
+    HRESULT (__attribute__((__stdcall__)) *get_responseText)(
+        IXMLHttpRequest *This,
+        BSTR *pbstrBody);
+    HRESULT (__attribute__((__stdcall__)) *get_responseBody)(
+        IXMLHttpRequest *This,
+        VARIANT *pvarBody);
+    HRESULT (__attribute__((__stdcall__)) *get_responseStream)(
+        IXMLHttpRequest *This,
+        VARIANT *pvarBody);
+    HRESULT (__attribute__((__stdcall__)) *get_readyState)(
+        IXMLHttpRequest *This,
+        LONG *plState);
+    HRESULT (__attribute__((__stdcall__)) *put_onreadystatechange)(
+        IXMLHttpRequest *This,
+        IDispatch *pReadyStateSink);
+   
+} IXMLHttpRequestVtbl;
+struct IXMLHttpRequest {
+    IXMLHttpRequestVtbl* lpVtbl;
+};
+extern const GUID CLSID_XMLHTTPRequest;
+#define __IXMLDSOControl_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDSOControl;
+typedef struct IXMLDSOControlVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDSOControl *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDSOControl *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDSOControl *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDSOControl *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDSOControl *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDSOControl *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDSOControl *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_XMLDocument)(
+        IXMLDSOControl *This,
+        IXMLDOMDocument **ppDoc);
+    HRESULT (__attribute__((__stdcall__)) *put_XMLDocument)(
+        IXMLDSOControl *This,
+        IXMLDOMDocument *ppDoc);
+    HRESULT (__attribute__((__stdcall__)) *get_JavaDSOCompatible)(
+        IXMLDSOControl *This,
+        WINBOOL *fJavaDSOCompatible);
+    HRESULT (__attribute__((__stdcall__)) *put_JavaDSOCompatible)(
+        IXMLDSOControl *This,
+        WINBOOL fJavaDSOCompatible);
+    HRESULT (__attribute__((__stdcall__)) *get_readyState)(
+        IXMLDSOControl *This,
+        LONG *state);
+   
+} IXMLDSOControlVtbl;
+struct IXMLDSOControl {
+    IXMLDSOControlVtbl* lpVtbl;
+};
+extern const GUID CLSID_XMLDSOControl;
+#define __IXMLElementCollection_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLElementCollection;
+typedef struct IXMLElementCollectionVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLElementCollection *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLElementCollection *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLElementCollection *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLElementCollection *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLElementCollection *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLElementCollection *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLElementCollection *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *put_length)(
+        IXMLElementCollection *This,
+        LONG v);
+    HRESULT (__attribute__((__stdcall__)) *get_length)(
+        IXMLElementCollection *This,
+        LONG *p);
+    HRESULT (__attribute__((__stdcall__)) *get__newEnum)(
+        IXMLElementCollection *This,
+        IUnknown **ppUnk);
+    HRESULT (__attribute__((__stdcall__)) *item)(
+        IXMLElementCollection *This,
+        VARIANT var1,
+        VARIANT var2,
+        IDispatch **ppDisp);
+   
+} IXMLElementCollectionVtbl;
+struct IXMLElementCollection {
+    IXMLElementCollectionVtbl* lpVtbl;
+};
+#define __IXMLElement_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLElement;
+typedef struct IXMLElementVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLElement *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLElement *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLElement *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLElement *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLElement *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLElement *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLElement *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_tagName)(
+        IXMLElement *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *put_tagName)(
+        IXMLElement *This,
+        BSTR p);
+    HRESULT (__attribute__((__stdcall__)) *get_parent)(
+        IXMLElement *This,
+        IXMLElement **parent);
+    HRESULT (__attribute__((__stdcall__)) *setAttribute)(
+        IXMLElement *This,
+        BSTR strPropertyName,
+        VARIANT PropertyValue);
+    HRESULT (__attribute__((__stdcall__)) *getAttribute)(
+        IXMLElement *This,
+        BSTR strPropertyName,
+        VARIANT *PropertyValue);
+    HRESULT (__attribute__((__stdcall__)) *removeAttribute)(
+        IXMLElement *This,
+        BSTR strPropertyName);
+    HRESULT (__attribute__((__stdcall__)) *get_children)(
+        IXMLElement *This,
+        IXMLElementCollection **p);
+    HRESULT (__attribute__((__stdcall__)) *get_type)(
+        IXMLElement *This,
+        LONG *p);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLElement *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLElement *This,
+        BSTR p);
+    HRESULT (__attribute__((__stdcall__)) *addChild)(
+        IXMLElement *This,
+        IXMLElement *pChildElem,
+        LONG lIndex,
+        LONG lreserved);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLElement *This,
+        IXMLElement *pChildElem);
+   
+} IXMLElementVtbl;
+struct IXMLElement {
+    IXMLElementVtbl* lpVtbl;
+};
+#define __IXMLDocument_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDocument;
+typedef struct IXMLDocumentVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDocument *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDocument *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDocument *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDocument *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDocument *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDocument *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDocument *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_root)(
+        IXMLDocument *This,
+        IXMLElement **p);
+    HRESULT (__attribute__((__stdcall__)) *get_fileSize)(
+        IXMLDocument *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_fileModifiedDate)(
+        IXMLDocument *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_fileUpdatedDate)(
+        IXMLDocument *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_URL)(
+        IXMLDocument *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *put_URL)(
+        IXMLDocument *This,
+        BSTR p);
+    HRESULT (__attribute__((__stdcall__)) *get_mimeType)(
+        IXMLDocument *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_readyState)(
+        IXMLDocument *This,
+        LONG *p);
+    HRESULT (__attribute__((__stdcall__)) *get_charset)(
+        IXMLDocument *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *put_charset)(
+        IXMLDocument *This,
+        BSTR p);
+    HRESULT (__attribute__((__stdcall__)) *get_version)(
+        IXMLDocument *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_doctype)(
+        IXMLDocument *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_dtdURl)(
+        IXMLDocument *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *createElement)(
+        IXMLDocument *This,
+        VARIANT vType,
+        VARIANT var1,
+        IXMLElement **ppElem);
+   
+} IXMLDocumentVtbl;
+struct IXMLDocument {
+    IXMLDocumentVtbl* lpVtbl;
+};
+#define __IXMLElement2_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLElement2;
+typedef struct IXMLElement2Vtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLElement2 *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLElement2 *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLElement2 *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLElement2 *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLElement2 *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLElement2 *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLElement2 *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_tagName)(
+        IXMLElement2 *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *put_tagName)(
+        IXMLElement2 *This,
+        BSTR p);
+    HRESULT (__attribute__((__stdcall__)) *get_parent)(
+        IXMLElement2 *This,
+        IXMLElement2 **ppParent);
+    HRESULT (__attribute__((__stdcall__)) *setAttribute)(
+        IXMLElement2 *This,
+        BSTR strPropertyName,
+        VARIANT PropertyValue);
+    HRESULT (__attribute__((__stdcall__)) *getAttribute)(
+        IXMLElement2 *This,
+        BSTR strPropertyName,
+        VARIANT *PropertyValue);
+    HRESULT (__attribute__((__stdcall__)) *removeAttribute)(
+        IXMLElement2 *This,
+        BSTR strPropertyName);
+    HRESULT (__attribute__((__stdcall__)) *get_children)(
+        IXMLElement2 *This,
+        IXMLElementCollection **pp);
+    HRESULT (__attribute__((__stdcall__)) *get_type)(
+        IXMLElement2 *This,
+        LONG *plType);
+    HRESULT (__attribute__((__stdcall__)) *get_text)(
+        IXMLElement2 *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *put_text)(
+        IXMLElement2 *This,
+        BSTR p);
+    HRESULT (__attribute__((__stdcall__)) *addChild)(
+        IXMLElement2 *This,
+        IXMLElement2 *pChildElem,
+        LONG lIndex,
+        LONG lReserved);
+    HRESULT (__attribute__((__stdcall__)) *removeChild)(
+        IXMLElement2 *This,
+        IXMLElement2 *pChildElem);
+    HRESULT (__attribute__((__stdcall__)) *get_attributes)(
+        IXMLElement2 *This,
+        IXMLElementCollection **pp);
+   
+} IXMLElement2Vtbl;
+struct IXMLElement2 {
+    IXMLElement2Vtbl* lpVtbl;
+};
+#define __IXMLDocument2_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLDocument2;
+typedef struct IXMLDocument2Vtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLDocument2 *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLDocument2 *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLDocument2 *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLDocument2 *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLDocument2 *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLDocument2 *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLDocument2 *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_root)(
+        IXMLDocument2 *This,
+        IXMLElement2 **p);
+    HRESULT (__attribute__((__stdcall__)) *get_fileSize)(
+        IXMLDocument2 *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_fileModifiedDate)(
+        IXMLDocument2 *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_fileUpdatedDate)(
+        IXMLDocument2 *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_URL)(
+        IXMLDocument2 *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *put_URL)(
+        IXMLDocument2 *This,
+        BSTR p);
+    HRESULT (__attribute__((__stdcall__)) *get_mimeType)(
+        IXMLDocument2 *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_readyState)(
+        IXMLDocument2 *This,
+        LONG *pl);
+    HRESULT (__attribute__((__stdcall__)) *get_charset)(
+        IXMLDocument2 *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *put_charset)(
+        IXMLDocument2 *This,
+        BSTR p);
+    HRESULT (__attribute__((__stdcall__)) *get_version)(
+        IXMLDocument2 *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_doctype)(
+        IXMLDocument2 *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_dtdURL)(
+        IXMLDocument2 *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *createElement)(
+        IXMLDocument2 *This,
+        VARIANT vType,
+        VARIANT var,
+        IXMLElement2 **ppElem);
+    HRESULT (__attribute__((__stdcall__)) *get_async)(
+        IXMLDocument2 *This,
+        VARIANT_BOOL *pf);
+    HRESULT (__attribute__((__stdcall__)) *put_async)(
+        IXMLDocument2 *This,
+        VARIANT_BOOL f);
+   
+} IXMLDocument2Vtbl;
+struct IXMLDocument2 {
+    IXMLDocument2Vtbl* lpVtbl;
+};
+typedef enum tagXMLEMEM_TYPE {
+    XMLELEMTYPE_ELEMENT = 0,
+    XMLELEMTYPE_TEXT = 1,
+    XMLELEMTYPE_COMMENT = 2,
+    XMLELEMTYPE_DOCUMENT = 3,
+    XMLELEMTYPE_DTD = 4,
+    XMLELEMTYPE_PI = 5,
+    XMLELEMTYPE_OTHER = 6
+} XMLELEM_TYPE;
+typedef struct _xml_error {
+    UINT _nLine;
     BSTR _pchBuf;
-    unsigned int _cchBuf;
-    unsigned int _ich;
+    BSTR _cchBuf;
+    UINT _ich;
     BSTR _pszFound;
     BSTR _pszExpected;
     DWORD _reserved1;
     DWORD _reserved2;
-  } XML_ERROR;
-  extern RPC_IF_HANDLE __MIDL_itf_msxml_0000_v0_0_c_ifspec;
-  extern RPC_IF_HANDLE __MIDL_itf_msxml_0000_v0_0_s_ifspec;
-#define __MSXML_LIBRARY_DEFINED__ 
-  typedef enum tagDOMNodeType {
-    NODE_INVALID = 0,NODE_ELEMENT,NODE_ATTRIBUTE,NODE_TEXT,NODE_CDATA_SECTION,
-    NODE_ENTITY_REFERENCE,NODE_ENTITY,NODE_PROCESSING_INSTRUCTION,NODE_COMMENT,
-    NODE_DOCUMENT,NODE_DOCUMENT_TYPE,NODE_DOCUMENT_FRAGMENT,NODE_NOTATION
-  } DOMNodeType;
-  typedef enum tagXMLEMEM_TYPE {
-    XMLELEMTYPE_ELEMENT = 0,XMLELEMTYPE_TEXT,XMLELEMTYPE_COMMENT,XMLELEMTYPE_DOCUMENT,
-    XMLELEMTYPE_DTD,XMLELEMTYPE_PI,XMLELEMTYPE_OTHER
-  } XMLELEM_TYPE;
-  extern const IID LIBID_MSXML;
-#define __IXMLDOMImplementation_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMImplementation;
-  typedef struct IXMLDOMImplementationVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMImplementation *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMImplementation *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMImplementation *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMImplementation *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMImplementation *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMImplementation *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMImplementation *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *hasFeature)(IXMLDOMImplementation *This,BSTR feature,BSTR version,VARIANT_BOOL *hasFeature);
-   
-  } IXMLDOMImplementationVtbl;
-  struct IXMLDOMImplementation {
-    struct IXMLDOMImplementationVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMImplementation_hasFeature_Proxy(IXMLDOMImplementation *This,BSTR feature,BSTR version,VARIANT_BOOL *hasFeature);
-  void __attribute__((__stdcall__)) IXMLDOMImplementation_hasFeature_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDOMNode_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMNode;
-  typedef struct IXMLDOMNodeVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMNode *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMNode *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMNode *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMNode *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMNode *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMNode *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMNode *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMNode *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMNode *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMNode *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMNode *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMNode *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMNode *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMNode *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMNode *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMNode *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMNode *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMNode *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMNode *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMNode *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMNode *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMNode *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMNode *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMNode *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMNode *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMNode *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMNode *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMNode *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMNode *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMNode *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMNode *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMNode *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMNode *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMNode *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMNode *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMNode *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMNode *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMNode *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMNode *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMNode *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMNode *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMNode *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMNode *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-   
-  } IXMLDOMNodeVtbl;
-  struct IXMLDOMNode {
-    struct IXMLDOMNodeVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_nodeName_Proxy(IXMLDOMNode *This,BSTR *name);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_nodeName_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_nodeValue_Proxy(IXMLDOMNode *This,VARIANT *value);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_nodeValue_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_put_nodeValue_Proxy(IXMLDOMNode *This,VARIANT value);
-  void __attribute__((__stdcall__)) IXMLDOMNode_put_nodeValue_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_nodeType_Proxy(IXMLDOMNode *This,DOMNodeType *type);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_nodeType_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_parentNode_Proxy(IXMLDOMNode *This,IXMLDOMNode **parent);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_parentNode_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_childNodes_Proxy(IXMLDOMNode *This,IXMLDOMNodeList **childList);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_childNodes_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_firstChild_Proxy(IXMLDOMNode *This,IXMLDOMNode **firstChild);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_firstChild_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_lastChild_Proxy(IXMLDOMNode *This,IXMLDOMNode **lastChild);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_lastChild_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_previousSibling_Proxy(IXMLDOMNode *This,IXMLDOMNode **previousSibling);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_previousSibling_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_nextSibling_Proxy(IXMLDOMNode *This,IXMLDOMNode **nextSibling);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_nextSibling_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_attributes_Proxy(IXMLDOMNode *This,IXMLDOMNamedNodeMap **attributeMap);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_attributes_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_insertBefore_Proxy(IXMLDOMNode *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-  void __attribute__((__stdcall__)) IXMLDOMNode_insertBefore_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_replaceChild_Proxy(IXMLDOMNode *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-  void __attribute__((__stdcall__)) IXMLDOMNode_replaceChild_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_removeChild_Proxy(IXMLDOMNode *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-  void __attribute__((__stdcall__)) IXMLDOMNode_removeChild_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_appendChild_Proxy(IXMLDOMNode *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-  void __attribute__((__stdcall__)) IXMLDOMNode_appendChild_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_hasChildNodes_Proxy(IXMLDOMNode *This,VARIANT_BOOL *hasChild);
-  void __attribute__((__stdcall__)) IXMLDOMNode_hasChildNodes_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_ownerDocument_Proxy(IXMLDOMNode *This,IXMLDOMDocument **DOMDocument);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_ownerDocument_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_cloneNode_Proxy(IXMLDOMNode *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-  void __attribute__((__stdcall__)) IXMLDOMNode_cloneNode_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_nodeTypeString_Proxy(IXMLDOMNode *This,BSTR *nodeType);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_nodeTypeString_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_text_Proxy(IXMLDOMNode *This,BSTR *text);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_text_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_put_text_Proxy(IXMLDOMNode *This,BSTR text);
-  void __attribute__((__stdcall__)) IXMLDOMNode_put_text_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_specified_Proxy(IXMLDOMNode *This,VARIANT_BOOL *isSpecified);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_specified_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_definition_Proxy(IXMLDOMNode *This,IXMLDOMNode **definitionNode);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_definition_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_nodeTypedValue_Proxy(IXMLDOMNode *This,VARIANT *typedValue);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_nodeTypedValue_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_put_nodeTypedValue_Proxy(IXMLDOMNode *This,VARIANT typedValue);
-  void __attribute__((__stdcall__)) IXMLDOMNode_put_nodeTypedValue_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_dataType_Proxy(IXMLDOMNode *This,VARIANT *dataTypeName);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_dataType_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_put_dataType_Proxy(IXMLDOMNode *This,BSTR dataTypeName);
-  void __attribute__((__stdcall__)) IXMLDOMNode_put_dataType_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_xml_Proxy(IXMLDOMNode *This,BSTR *xmlString);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_xml_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_transformNode_Proxy(IXMLDOMNode *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-  void __attribute__((__stdcall__)) IXMLDOMNode_transformNode_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_selectNodes_Proxy(IXMLDOMNode *This,BSTR queryString,IXMLDOMNodeList **resultList);
-  void __attribute__((__stdcall__)) IXMLDOMNode_selectNodes_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_selectSingleNode_Proxy(IXMLDOMNode *This,BSTR queryString,IXMLDOMNode **resultNode);
-  void __attribute__((__stdcall__)) IXMLDOMNode_selectSingleNode_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_parsed_Proxy(IXMLDOMNode *This,VARIANT_BOOL *isParsed);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_parsed_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_namespaceURI_Proxy(IXMLDOMNode *This,BSTR *namespaceURI);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_namespaceURI_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_prefix_Proxy(IXMLDOMNode *This,BSTR *prefixString);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_prefix_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_get_baseName_Proxy(IXMLDOMNode *This,BSTR *nameString);
-  void __attribute__((__stdcall__)) IXMLDOMNode_get_baseName_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNode_transformNodeToObject_Proxy(IXMLDOMNode *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-  void __attribute__((__stdcall__)) IXMLDOMNode_transformNodeToObject_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDOMDocumentFragment_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMDocumentFragment;
-  typedef struct IXMLDOMDocumentFragmentVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMDocumentFragment *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMDocumentFragment *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMDocumentFragment *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMDocumentFragment *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMDocumentFragment *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMDocumentFragment *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMDocumentFragment *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMDocumentFragment *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMDocumentFragment *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMDocumentFragment *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMDocumentFragment *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMDocumentFragment *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMDocumentFragment *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMDocumentFragment *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMDocumentFragment *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMDocumentFragment *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMDocumentFragment *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMDocumentFragment *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMDocumentFragment *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMDocumentFragment *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMDocumentFragment *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMDocumentFragment *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMDocumentFragment *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMDocumentFragment *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMDocumentFragment *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMDocumentFragment *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMDocumentFragment *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMDocumentFragment *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMDocumentFragment *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMDocumentFragment *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMDocumentFragment *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMDocumentFragment *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMDocumentFragment *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMDocumentFragment *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMDocumentFragment *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMDocumentFragment *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMDocumentFragment *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMDocumentFragment *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMDocumentFragment *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMDocumentFragment *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMDocumentFragment *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMDocumentFragment *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMDocumentFragment *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-   
-  } IXMLDOMDocumentFragmentVtbl;
-  struct IXMLDOMDocumentFragment {
-    struct IXMLDOMDocumentFragmentVtbl *lpVtbl;
-  };
-#define __IXMLDOMDocument_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMDocument;
-  typedef struct IXMLDOMDocumentVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMDocument *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMDocument *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMDocument *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMDocument *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMDocument *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMDocument *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMDocument *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMDocument *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMDocument *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMDocument *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMDocument *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMDocument *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMDocument *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMDocument *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMDocument *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMDocument *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMDocument *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMDocument *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMDocument *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMDocument *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMDocument *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMDocument *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMDocument *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMDocument *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMDocument *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMDocument *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMDocument *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMDocument *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMDocument *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMDocument *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMDocument *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMDocument *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMDocument *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMDocument *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMDocument *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMDocument *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMDocument *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMDocument *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMDocument *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMDocument *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMDocument *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMDocument *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMDocument *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-      HRESULT (__attribute__((__stdcall__)) *get_doctype)(IXMLDOMDocument *This,IXMLDOMDocumentType **documentType);
-      HRESULT (__attribute__((__stdcall__)) *get_implementation)(IXMLDOMDocument *This,IXMLDOMImplementation **impl);
-      HRESULT (__attribute__((__stdcall__)) *get_documentElement)(IXMLDOMDocument *This,IXMLDOMElement **DOMElement);
-      HRESULT (__attribute__((__stdcall__)) *putref_documentElement)(IXMLDOMDocument *This,IXMLDOMElement *DOMElement);
-      HRESULT (__attribute__((__stdcall__)) *createElement)(IXMLDOMDocument *This,BSTR tagName,IXMLDOMElement **element);
-      HRESULT (__attribute__((__stdcall__)) *createDocumentFragment)(IXMLDOMDocument *This,IXMLDOMDocumentFragment **docFrag);
-      HRESULT (__attribute__((__stdcall__)) *createTextNode)(IXMLDOMDocument *This,BSTR data,IXMLDOMText **text);
-      HRESULT (__attribute__((__stdcall__)) *createComment)(IXMLDOMDocument *This,BSTR data,IXMLDOMComment **comment);
-      HRESULT (__attribute__((__stdcall__)) *createCDATASection)(IXMLDOMDocument *This,BSTR data,IXMLDOMCDATASection **cdata);
-      HRESULT (__attribute__((__stdcall__)) *createProcessingInstruction)(IXMLDOMDocument *This,BSTR target,BSTR data,IXMLDOMProcessingInstruction **pi);
-      HRESULT (__attribute__((__stdcall__)) *createAttribute)(IXMLDOMDocument *This,BSTR name,IXMLDOMAttribute **attribute);
-      HRESULT (__attribute__((__stdcall__)) *createEntityReference)(IXMLDOMDocument *This,BSTR name,IXMLDOMEntityReference **entityRef);
-      HRESULT (__attribute__((__stdcall__)) *getElementsByTagName)(IXMLDOMDocument *This,BSTR tagName,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *createNode)(IXMLDOMDocument *This,VARIANT Type,BSTR name,BSTR namespaceURI,IXMLDOMNode **node);
-      HRESULT (__attribute__((__stdcall__)) *nodeFromID)(IXMLDOMDocument *This,BSTR idString,IXMLDOMNode **node);
-      HRESULT (__attribute__((__stdcall__)) *load)(IXMLDOMDocument *This,VARIANT xmlSource,VARIANT_BOOL *isSuccessful);
-      HRESULT (__attribute__((__stdcall__)) *get_readyState)(IXMLDOMDocument *This,LONG *value);
-      HRESULT (__attribute__((__stdcall__)) *get_parseError)(IXMLDOMDocument *This,IXMLDOMParseError **errorObj);
-      HRESULT (__attribute__((__stdcall__)) *get_url)(IXMLDOMDocument *This,BSTR *urlString);
-      HRESULT (__attribute__((__stdcall__)) *get_async)(IXMLDOMDocument *This,VARIANT_BOOL *isAsync);
-      HRESULT (__attribute__((__stdcall__)) *put_async)(IXMLDOMDocument *This,VARIANT_BOOL isAsync);
-      HRESULT (__attribute__((__stdcall__)) *abort)(IXMLDOMDocument *This);
-      HRESULT (__attribute__((__stdcall__)) *loadXML)(IXMLDOMDocument *This,BSTR bstrXML,VARIANT_BOOL *isSuccessful);
-      HRESULT (__attribute__((__stdcall__)) *save)(IXMLDOMDocument *This,VARIANT destination);
-      HRESULT (__attribute__((__stdcall__)) *get_validateOnParse)(IXMLDOMDocument *This,VARIANT_BOOL *isValidating);
-      HRESULT (__attribute__((__stdcall__)) *put_validateOnParse)(IXMLDOMDocument *This,VARIANT_BOOL isValidating);
-      HRESULT (__attribute__((__stdcall__)) *get_resolveExternals)(IXMLDOMDocument *This,VARIANT_BOOL *isResolving);
-      HRESULT (__attribute__((__stdcall__)) *put_resolveExternals)(IXMLDOMDocument *This,VARIANT_BOOL isResolving);
-      HRESULT (__attribute__((__stdcall__)) *get_preserveWhiteSpace)(IXMLDOMDocument *This,VARIANT_BOOL *isPreserving);
-      HRESULT (__attribute__((__stdcall__)) *put_preserveWhiteSpace)(IXMLDOMDocument *This,VARIANT_BOOL isPreserving);
-      HRESULT (__attribute__((__stdcall__)) *put_onreadystatechange)(IXMLDOMDocument *This,VARIANT readystatechangeSink);
-      HRESULT (__attribute__((__stdcall__)) *put_ondataavailable)(IXMLDOMDocument *This,VARIANT ondataavailableSink);
-      HRESULT (__attribute__((__stdcall__)) *put_ontransformnode)(IXMLDOMDocument *This,VARIANT ontransformnodeSink);
-   
-  } IXMLDOMDocumentVtbl;
-  struct IXMLDOMDocument {
-    struct IXMLDOMDocumentVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_get_doctype_Proxy(IXMLDOMDocument *This,IXMLDOMDocumentType **documentType);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_get_doctype_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_get_implementation_Proxy(IXMLDOMDocument *This,IXMLDOMImplementation **impl);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_get_implementation_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_get_documentElement_Proxy(IXMLDOMDocument *This,IXMLDOMElement **DOMElement);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_get_documentElement_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_putref_documentElement_Proxy(IXMLDOMDocument *This,IXMLDOMElement *DOMElement);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_putref_documentElement_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_createElement_Proxy(IXMLDOMDocument *This,BSTR tagName,IXMLDOMElement **element);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_createElement_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_createDocumentFragment_Proxy(IXMLDOMDocument *This,IXMLDOMDocumentFragment **docFrag);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_createDocumentFragment_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_createTextNode_Proxy(IXMLDOMDocument *This,BSTR data,IXMLDOMText **text);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_createTextNode_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_createComment_Proxy(IXMLDOMDocument *This,BSTR data,IXMLDOMComment **comment);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_createComment_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_createCDATASection_Proxy(IXMLDOMDocument *This,BSTR data,IXMLDOMCDATASection **cdata);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_createCDATASection_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_createProcessingInstruction_Proxy(IXMLDOMDocument *This,BSTR target,BSTR data,IXMLDOMProcessingInstruction **pi);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_createProcessingInstruction_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_createAttribute_Proxy(IXMLDOMDocument *This,BSTR name,IXMLDOMAttribute **attribute);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_createAttribute_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_createEntityReference_Proxy(IXMLDOMDocument *This,BSTR name,IXMLDOMEntityReference **entityRef);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_createEntityReference_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_getElementsByTagName_Proxy(IXMLDOMDocument *This,BSTR tagName,IXMLDOMNodeList **resultList);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_getElementsByTagName_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_createNode_Proxy(IXMLDOMDocument *This,VARIANT Type,BSTR name,BSTR namespaceURI,IXMLDOMNode **node);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_createNode_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_nodeFromID_Proxy(IXMLDOMDocument *This,BSTR idString,IXMLDOMNode **node);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_nodeFromID_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_load_Proxy(IXMLDOMDocument *This,VARIANT xmlSource,VARIANT_BOOL *isSuccessful);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_load_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_get_readyState_Proxy(IXMLDOMDocument *This,LONG *value);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_get_readyState_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_get_parseError_Proxy(IXMLDOMDocument *This,IXMLDOMParseError **errorObj);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_get_parseError_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_get_url_Proxy(IXMLDOMDocument *This,BSTR *urlString);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_get_url_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_get_async_Proxy(IXMLDOMDocument *This,VARIANT_BOOL *isAsync);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_get_async_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_put_async_Proxy(IXMLDOMDocument *This,VARIANT_BOOL isAsync);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_put_async_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_abort_Proxy(IXMLDOMDocument *This);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_abort_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_loadXML_Proxy(IXMLDOMDocument *This,BSTR bstrXML,VARIANT_BOOL *isSuccessful);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_loadXML_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_save_Proxy(IXMLDOMDocument *This,VARIANT destination);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_save_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_get_validateOnParse_Proxy(IXMLDOMDocument *This,VARIANT_BOOL *isValidating);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_get_validateOnParse_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_put_validateOnParse_Proxy(IXMLDOMDocument *This,VARIANT_BOOL isValidating);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_put_validateOnParse_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_get_resolveExternals_Proxy(IXMLDOMDocument *This,VARIANT_BOOL *isResolving);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_get_resolveExternals_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_put_resolveExternals_Proxy(IXMLDOMDocument *This,VARIANT_BOOL isResolving);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_put_resolveExternals_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_get_preserveWhiteSpace_Proxy(IXMLDOMDocument *This,VARIANT_BOOL *isPreserving);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_get_preserveWhiteSpace_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_put_preserveWhiteSpace_Proxy(IXMLDOMDocument *This,VARIANT_BOOL isPreserving);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_put_preserveWhiteSpace_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_put_onreadystatechange_Proxy(IXMLDOMDocument *This,VARIANT readystatechangeSink);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_put_onreadystatechange_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_put_ondataavailable_Proxy(IXMLDOMDocument *This,VARIANT ondataavailableSink);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_put_ondataavailable_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocument_put_ontransformnode_Proxy(IXMLDOMDocument *This,VARIANT ontransformnodeSink);
-  void __attribute__((__stdcall__)) IXMLDOMDocument_put_ontransformnode_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDOMNodeList_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMNodeList;
-  typedef struct IXMLDOMNodeListVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMNodeList *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMNodeList *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMNodeList *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMNodeList *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMNodeList *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMNodeList *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMNodeList *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_item)(IXMLDOMNodeList *This,LONG index,IXMLDOMNode **listItem);
-      HRESULT (__attribute__((__stdcall__)) *get_length)(IXMLDOMNodeList *This,LONG *listLength);
-      HRESULT (__attribute__((__stdcall__)) *nextNode)(IXMLDOMNodeList *This,IXMLDOMNode **nextItem);
-      HRESULT (__attribute__((__stdcall__)) *reset)(IXMLDOMNodeList *This);
-      HRESULT (__attribute__((__stdcall__)) *get__newEnum)(IXMLDOMNodeList *This,IUnknown **ppUnk);
-   
-  } IXMLDOMNodeListVtbl;
-  struct IXMLDOMNodeList {
-    struct IXMLDOMNodeListVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNodeList_get_item_Proxy(IXMLDOMNodeList *This,LONG index,IXMLDOMNode **listItem);
-  void __attribute__((__stdcall__)) IXMLDOMNodeList_get_item_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNodeList_get_length_Proxy(IXMLDOMNodeList *This,LONG *listLength);
-  void __attribute__((__stdcall__)) IXMLDOMNodeList_get_length_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNodeList_nextNode_Proxy(IXMLDOMNodeList *This,IXMLDOMNode **nextItem);
-  void __attribute__((__stdcall__)) IXMLDOMNodeList_nextNode_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNodeList_reset_Proxy(IXMLDOMNodeList *This);
-  void __attribute__((__stdcall__)) IXMLDOMNodeList_reset_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNodeList_get__newEnum_Proxy(IXMLDOMNodeList *This,IUnknown **ppUnk);
-  void __attribute__((__stdcall__)) IXMLDOMNodeList_get__newEnum_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDOMNamedNodeMap_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMNamedNodeMap;
-  typedef struct IXMLDOMNamedNodeMapVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMNamedNodeMap *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMNamedNodeMap *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMNamedNodeMap *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMNamedNodeMap *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMNamedNodeMap *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMNamedNodeMap *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMNamedNodeMap *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *getNamedItem)(IXMLDOMNamedNodeMap *This,BSTR name,IXMLDOMNode **namedItem);
-      HRESULT (__attribute__((__stdcall__)) *setNamedItem)(IXMLDOMNamedNodeMap *This,IXMLDOMNode *newItem,IXMLDOMNode **nameItem);
-      HRESULT (__attribute__((__stdcall__)) *removeNamedItem)(IXMLDOMNamedNodeMap *This,BSTR name,IXMLDOMNode **namedItem);
-      HRESULT (__attribute__((__stdcall__)) *get_item)(IXMLDOMNamedNodeMap *This,LONG index,IXMLDOMNode **listItem);
-      HRESULT (__attribute__((__stdcall__)) *get_length)(IXMLDOMNamedNodeMap *This,LONG *listLength);
-      HRESULT (__attribute__((__stdcall__)) *getQualifiedItem)(IXMLDOMNamedNodeMap *This,BSTR baseName,BSTR namespaceURI,IXMLDOMNode **qualifiedItem);
-      HRESULT (__attribute__((__stdcall__)) *removeQualifiedItem)(IXMLDOMNamedNodeMap *This,BSTR baseName,BSTR namespaceURI,IXMLDOMNode **qualifiedItem);
-      HRESULT (__attribute__((__stdcall__)) *nextNode)(IXMLDOMNamedNodeMap *This,IXMLDOMNode **nextItem);
-      HRESULT (__attribute__((__stdcall__)) *reset)(IXMLDOMNamedNodeMap *This);
-      HRESULT (__attribute__((__stdcall__)) *get__newEnum)(IXMLDOMNamedNodeMap *This,IUnknown **ppUnk);
-   
-  } IXMLDOMNamedNodeMapVtbl;
-  struct IXMLDOMNamedNodeMap {
-    struct IXMLDOMNamedNodeMapVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_getNamedItem_Proxy(IXMLDOMNamedNodeMap *This,BSTR name,IXMLDOMNode **namedItem);
-  void __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_getNamedItem_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_setNamedItem_Proxy(IXMLDOMNamedNodeMap *This,IXMLDOMNode *newItem,IXMLDOMNode **nameItem);
-  void __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_setNamedItem_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_removeNamedItem_Proxy(IXMLDOMNamedNodeMap *This,BSTR name,IXMLDOMNode **namedItem);
-  void __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_removeNamedItem_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_get_item_Proxy(IXMLDOMNamedNodeMap *This,LONG index,IXMLDOMNode **listItem);
-  void __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_get_item_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_get_length_Proxy(IXMLDOMNamedNodeMap *This,LONG *listLength);
-  void __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_get_length_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_getQualifiedItem_Proxy(IXMLDOMNamedNodeMap *This,BSTR baseName,BSTR namespaceURI,IXMLDOMNode **qualifiedItem);
-  void __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_getQualifiedItem_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_removeQualifiedItem_Proxy(IXMLDOMNamedNodeMap *This,BSTR baseName,BSTR namespaceURI,IXMLDOMNode **qualifiedItem);
-  void __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_removeQualifiedItem_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_nextNode_Proxy(IXMLDOMNamedNodeMap *This,IXMLDOMNode **nextItem);
-  void __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_nextNode_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_reset_Proxy(IXMLDOMNamedNodeMap *This);
-  void __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_reset_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_get__newEnum_Proxy(IXMLDOMNamedNodeMap *This,IUnknown **ppUnk);
-  void __attribute__((__stdcall__)) IXMLDOMNamedNodeMap_get__newEnum_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDOMCharacterData_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMCharacterData;
-  typedef struct IXMLDOMCharacterDataVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMCharacterData *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMCharacterData *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMCharacterData *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMCharacterData *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMCharacterData *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMCharacterData *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMCharacterData *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMCharacterData *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMCharacterData *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMCharacterData *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMCharacterData *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMCharacterData *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMCharacterData *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMCharacterData *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMCharacterData *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMCharacterData *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMCharacterData *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMCharacterData *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMCharacterData *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMCharacterData *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMCharacterData *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMCharacterData *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMCharacterData *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMCharacterData *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMCharacterData *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMCharacterData *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMCharacterData *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMCharacterData *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMCharacterData *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMCharacterData *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMCharacterData *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMCharacterData *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMCharacterData *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMCharacterData *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMCharacterData *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMCharacterData *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMCharacterData *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMCharacterData *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMCharacterData *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMCharacterData *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMCharacterData *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMCharacterData *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMCharacterData *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-      HRESULT (__attribute__((__stdcall__)) *get_data)(IXMLDOMCharacterData *This,BSTR *data);
-      HRESULT (__attribute__((__stdcall__)) *put_data)(IXMLDOMCharacterData *This,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *get_length)(IXMLDOMCharacterData *This,LONG *dataLength);
-      HRESULT (__attribute__((__stdcall__)) *substringData)(IXMLDOMCharacterData *This,LONG offset,LONG count,BSTR *data);
-      HRESULT (__attribute__((__stdcall__)) *appendData)(IXMLDOMCharacterData *This,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *insertData)(IXMLDOMCharacterData *This,LONG offset,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *deleteData)(IXMLDOMCharacterData *This,LONG offset,LONG count);
-      HRESULT (__attribute__((__stdcall__)) *replaceData)(IXMLDOMCharacterData *This,LONG offset,LONG count,BSTR data);
-   
-  } IXMLDOMCharacterDataVtbl;
-  struct IXMLDOMCharacterData {
-    struct IXMLDOMCharacterDataVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMCharacterData_get_data_Proxy(IXMLDOMCharacterData *This,BSTR *data);
-  void __attribute__((__stdcall__)) IXMLDOMCharacterData_get_data_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMCharacterData_put_data_Proxy(IXMLDOMCharacterData *This,BSTR data);
-  void __attribute__((__stdcall__)) IXMLDOMCharacterData_put_data_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMCharacterData_get_length_Proxy(IXMLDOMCharacterData *This,LONG *dataLength);
-  void __attribute__((__stdcall__)) IXMLDOMCharacterData_get_length_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMCharacterData_substringData_Proxy(IXMLDOMCharacterData *This,LONG offset,LONG count,BSTR *data);
-  void __attribute__((__stdcall__)) IXMLDOMCharacterData_substringData_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMCharacterData_appendData_Proxy(IXMLDOMCharacterData *This,BSTR data);
-  void __attribute__((__stdcall__)) IXMLDOMCharacterData_appendData_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMCharacterData_insertData_Proxy(IXMLDOMCharacterData *This,LONG offset,BSTR data);
-  void __attribute__((__stdcall__)) IXMLDOMCharacterData_insertData_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMCharacterData_deleteData_Proxy(IXMLDOMCharacterData *This,LONG offset,LONG count);
-  void __attribute__((__stdcall__)) IXMLDOMCharacterData_deleteData_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMCharacterData_replaceData_Proxy(IXMLDOMCharacterData *This,LONG offset,LONG count,BSTR data);
-  void __attribute__((__stdcall__)) IXMLDOMCharacterData_replaceData_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDOMAttribute_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMAttribute;
-  typedef struct IXMLDOMAttributeVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMAttribute *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMAttribute *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMAttribute *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMAttribute *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMAttribute *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMAttribute *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMAttribute *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMAttribute *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMAttribute *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMAttribute *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMAttribute *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMAttribute *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMAttribute *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMAttribute *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMAttribute *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMAttribute *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMAttribute *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMAttribute *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMAttribute *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMAttribute *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMAttribute *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMAttribute *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMAttribute *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMAttribute *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMAttribute *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMAttribute *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMAttribute *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMAttribute *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMAttribute *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMAttribute *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMAttribute *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMAttribute *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMAttribute *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMAttribute *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMAttribute *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMAttribute *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMAttribute *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMAttribute *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMAttribute *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMAttribute *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMAttribute *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMAttribute *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMAttribute *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-      HRESULT (__attribute__((__stdcall__)) *get_name)(IXMLDOMAttribute *This,BSTR *attributeName);
-      HRESULT (__attribute__((__stdcall__)) *get_value)(IXMLDOMAttribute *This,VARIANT *attributeValue);
-      HRESULT (__attribute__((__stdcall__)) *put_value)(IXMLDOMAttribute *This,VARIANT attributeValue);
-   
-  } IXMLDOMAttributeVtbl;
-  struct IXMLDOMAttribute {
-    struct IXMLDOMAttributeVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMAttribute_get_name_Proxy(IXMLDOMAttribute *This,BSTR *attributeName);
-  void __attribute__((__stdcall__)) IXMLDOMAttribute_get_name_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMAttribute_get_value_Proxy(IXMLDOMAttribute *This,VARIANT *attributeValue);
-  void __attribute__((__stdcall__)) IXMLDOMAttribute_get_value_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMAttribute_put_value_Proxy(IXMLDOMAttribute *This,VARIANT attributeValue);
-  void __attribute__((__stdcall__)) IXMLDOMAttribute_put_value_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDOMElement_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMElement;
-  typedef struct IXMLDOMElementVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMElement *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMElement *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMElement *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMElement *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMElement *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMElement *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMElement *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMElement *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMElement *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMElement *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMElement *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMElement *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMElement *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMElement *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMElement *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMElement *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMElement *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMElement *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMElement *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMElement *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMElement *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMElement *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMElement *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMElement *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMElement *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMElement *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMElement *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMElement *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMElement *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMElement *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMElement *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMElement *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMElement *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMElement *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMElement *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMElement *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMElement *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMElement *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMElement *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMElement *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMElement *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMElement *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMElement *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-      HRESULT (__attribute__((__stdcall__)) *get_tagName)(IXMLDOMElement *This,BSTR *tagName);
-      HRESULT (__attribute__((__stdcall__)) *getAttribute)(IXMLDOMElement *This,BSTR name,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *setAttribute)(IXMLDOMElement *This,BSTR name,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *removeAttribute)(IXMLDOMElement *This,BSTR name);
-      HRESULT (__attribute__((__stdcall__)) *getAttributeNode)(IXMLDOMElement *This,BSTR name,IXMLDOMAttribute **attributeNode);
-      HRESULT (__attribute__((__stdcall__)) *setAttributeNode)(IXMLDOMElement *This,IXMLDOMAttribute *DOMAttribute,IXMLDOMAttribute **attributeNode);
-      HRESULT (__attribute__((__stdcall__)) *removeAttributeNode)(IXMLDOMElement *This,IXMLDOMAttribute *DOMAttribute,IXMLDOMAttribute **attributeNode);
-      HRESULT (__attribute__((__stdcall__)) *getElementsByTagName)(IXMLDOMElement *This,BSTR tagName,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *normalize)(IXMLDOMElement *This);
-   
-  } IXMLDOMElementVtbl;
-  struct IXMLDOMElement {
-    struct IXMLDOMElementVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMElement_get_tagName_Proxy(IXMLDOMElement *This,BSTR *tagName);
-  void __attribute__((__stdcall__)) IXMLDOMElement_get_tagName_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMElement_getAttribute_Proxy(IXMLDOMElement *This,BSTR name,VARIANT *value);
-  void __attribute__((__stdcall__)) IXMLDOMElement_getAttribute_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMElement_setAttribute_Proxy(IXMLDOMElement *This,BSTR name,VARIANT value);
-  void __attribute__((__stdcall__)) IXMLDOMElement_setAttribute_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMElement_removeAttribute_Proxy(IXMLDOMElement *This,BSTR name);
-  void __attribute__((__stdcall__)) IXMLDOMElement_removeAttribute_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMElement_getAttributeNode_Proxy(IXMLDOMElement *This,BSTR name,IXMLDOMAttribute **attributeNode);
-  void __attribute__((__stdcall__)) IXMLDOMElement_getAttributeNode_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMElement_setAttributeNode_Proxy(IXMLDOMElement *This,IXMLDOMAttribute *DOMAttribute,IXMLDOMAttribute **attributeNode);
-  void __attribute__((__stdcall__)) IXMLDOMElement_setAttributeNode_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMElement_removeAttributeNode_Proxy(IXMLDOMElement *This,IXMLDOMAttribute *DOMAttribute,IXMLDOMAttribute **attributeNode);
-  void __attribute__((__stdcall__)) IXMLDOMElement_removeAttributeNode_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMElement_getElementsByTagName_Proxy(IXMLDOMElement *This,BSTR tagName,IXMLDOMNodeList **resultList);
-  void __attribute__((__stdcall__)) IXMLDOMElement_getElementsByTagName_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMElement_normalize_Proxy(IXMLDOMElement *This);
-  void __attribute__((__stdcall__)) IXMLDOMElement_normalize_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDOMText_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMText;
-  typedef struct IXMLDOMTextVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMText *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMText *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMText *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMText *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMText *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMText *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMText *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMText *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMText *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMText *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMText *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMText *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMText *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMText *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMText *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMText *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMText *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMText *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMText *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMText *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMText *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMText *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMText *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMText *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMText *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMText *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMText *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMText *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMText *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMText *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMText *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMText *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMText *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMText *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMText *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMText *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMText *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMText *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMText *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMText *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMText *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMText *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMText *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-      HRESULT (__attribute__((__stdcall__)) *get_data)(IXMLDOMText *This,BSTR *data);
-      HRESULT (__attribute__((__stdcall__)) *put_data)(IXMLDOMText *This,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *get_length)(IXMLDOMText *This,LONG *dataLength);
-      HRESULT (__attribute__((__stdcall__)) *substringData)(IXMLDOMText *This,LONG offset,LONG count,BSTR *data);
-      HRESULT (__attribute__((__stdcall__)) *appendData)(IXMLDOMText *This,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *insertData)(IXMLDOMText *This,LONG offset,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *deleteData)(IXMLDOMText *This,LONG offset,LONG count);
-      HRESULT (__attribute__((__stdcall__)) *replaceData)(IXMLDOMText *This,LONG offset,LONG count,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *splitText)(IXMLDOMText *This,LONG offset,IXMLDOMText **rightHandTextNode);
-   
-  } IXMLDOMTextVtbl;
-  struct IXMLDOMText {
-    struct IXMLDOMTextVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMText_splitText_Proxy(IXMLDOMText *This,LONG offset,IXMLDOMText **rightHandTextNode);
-  void __attribute__((__stdcall__)) IXMLDOMText_splitText_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDOMComment_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMComment;
-  typedef struct IXMLDOMCommentVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMComment *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMComment *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMComment *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMComment *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMComment *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMComment *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMComment *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMComment *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMComment *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMComment *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMComment *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMComment *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMComment *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMComment *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMComment *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMComment *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMComment *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMComment *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMComment *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMComment *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMComment *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMComment *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMComment *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMComment *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMComment *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMComment *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMComment *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMComment *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMComment *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMComment *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMComment *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMComment *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMComment *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMComment *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMComment *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMComment *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMComment *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMComment *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMComment *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMComment *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMComment *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMComment *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMComment *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-      HRESULT (__attribute__((__stdcall__)) *get_data)(IXMLDOMComment *This,BSTR *data);
-      HRESULT (__attribute__((__stdcall__)) *put_data)(IXMLDOMComment *This,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *get_length)(IXMLDOMComment *This,LONG *dataLength);
-      HRESULT (__attribute__((__stdcall__)) *substringData)(IXMLDOMComment *This,LONG offset,LONG count,BSTR *data);
-      HRESULT (__attribute__((__stdcall__)) *appendData)(IXMLDOMComment *This,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *insertData)(IXMLDOMComment *This,LONG offset,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *deleteData)(IXMLDOMComment *This,LONG offset,LONG count);
-      HRESULT (__attribute__((__stdcall__)) *replaceData)(IXMLDOMComment *This,LONG offset,LONG count,BSTR data);
-   
-  } IXMLDOMCommentVtbl;
-  struct IXMLDOMComment {
-    struct IXMLDOMCommentVtbl *lpVtbl;
-  };
-#define __IXMLDOMProcessingInstruction_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMProcessingInstruction;
-  typedef struct IXMLDOMProcessingInstructionVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMProcessingInstruction *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMProcessingInstruction *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMProcessingInstruction *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMProcessingInstruction *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMProcessingInstruction *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMProcessingInstruction *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMProcessingInstruction *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMProcessingInstruction *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMProcessingInstruction *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMProcessingInstruction *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMProcessingInstruction *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMProcessingInstruction *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMProcessingInstruction *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMProcessingInstruction *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMProcessingInstruction *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMProcessingInstruction *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMProcessingInstruction *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMProcessingInstruction *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMProcessingInstruction *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMProcessingInstruction *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMProcessingInstruction *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMProcessingInstruction *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMProcessingInstruction *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMProcessingInstruction *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMProcessingInstruction *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMProcessingInstruction *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMProcessingInstruction *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMProcessingInstruction *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMProcessingInstruction *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMProcessingInstruction *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMProcessingInstruction *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMProcessingInstruction *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMProcessingInstruction *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMProcessingInstruction *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMProcessingInstruction *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMProcessingInstruction *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMProcessingInstruction *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMProcessingInstruction *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMProcessingInstruction *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMProcessingInstruction *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMProcessingInstruction *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMProcessingInstruction *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMProcessingInstruction *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-      HRESULT (__attribute__((__stdcall__)) *get_target)(IXMLDOMProcessingInstruction *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_data)(IXMLDOMProcessingInstruction *This,BSTR *value);
-      HRESULT (__attribute__((__stdcall__)) *put_data)(IXMLDOMProcessingInstruction *This,BSTR value);
-   
-  } IXMLDOMProcessingInstructionVtbl;
-  struct IXMLDOMProcessingInstruction {
-    struct IXMLDOMProcessingInstructionVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMProcessingInstruction_get_target_Proxy(IXMLDOMProcessingInstruction *This,BSTR *name);
-  void __attribute__((__stdcall__)) IXMLDOMProcessingInstruction_get_target_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMProcessingInstruction_get_data_Proxy(IXMLDOMProcessingInstruction *This,BSTR *value);
-  void __attribute__((__stdcall__)) IXMLDOMProcessingInstruction_get_data_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMProcessingInstruction_put_data_Proxy(IXMLDOMProcessingInstruction *This,BSTR value);
-  void __attribute__((__stdcall__)) IXMLDOMProcessingInstruction_put_data_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDOMCDATASection_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMCDATASection;
-  typedef struct IXMLDOMCDATASectionVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMCDATASection *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMCDATASection *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMCDATASection *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMCDATASection *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMCDATASection *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMCDATASection *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMCDATASection *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMCDATASection *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMCDATASection *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMCDATASection *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMCDATASection *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMCDATASection *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMCDATASection *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMCDATASection *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMCDATASection *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMCDATASection *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMCDATASection *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMCDATASection *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMCDATASection *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMCDATASection *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMCDATASection *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMCDATASection *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMCDATASection *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMCDATASection *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMCDATASection *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMCDATASection *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMCDATASection *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMCDATASection *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMCDATASection *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMCDATASection *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMCDATASection *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMCDATASection *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMCDATASection *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMCDATASection *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMCDATASection *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMCDATASection *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMCDATASection *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMCDATASection *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMCDATASection *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMCDATASection *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMCDATASection *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMCDATASection *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMCDATASection *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-      HRESULT (__attribute__((__stdcall__)) *get_data)(IXMLDOMCDATASection *This,BSTR *data);
-      HRESULT (__attribute__((__stdcall__)) *put_data)(IXMLDOMCDATASection *This,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *get_length)(IXMLDOMCDATASection *This,LONG *dataLength);
-      HRESULT (__attribute__((__stdcall__)) *substringData)(IXMLDOMCDATASection *This,LONG offset,LONG count,BSTR *data);
-      HRESULT (__attribute__((__stdcall__)) *appendData)(IXMLDOMCDATASection *This,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *insertData)(IXMLDOMCDATASection *This,LONG offset,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *deleteData)(IXMLDOMCDATASection *This,LONG offset,LONG count);
-      HRESULT (__attribute__((__stdcall__)) *replaceData)(IXMLDOMCDATASection *This,LONG offset,LONG count,BSTR data);
-      HRESULT (__attribute__((__stdcall__)) *splitText)(IXMLDOMCDATASection *This,LONG offset,IXMLDOMText **rightHandTextNode);
-   
-  } IXMLDOMCDATASectionVtbl;
-  struct IXMLDOMCDATASection {
-    struct IXMLDOMCDATASectionVtbl *lpVtbl;
-  };
-#define __IXMLDOMDocumentType_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMDocumentType;
-  typedef struct IXMLDOMDocumentTypeVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMDocumentType *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMDocumentType *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMDocumentType *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMDocumentType *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMDocumentType *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMDocumentType *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMDocumentType *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMDocumentType *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMDocumentType *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMDocumentType *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMDocumentType *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMDocumentType *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMDocumentType *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMDocumentType *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMDocumentType *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMDocumentType *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMDocumentType *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMDocumentType *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMDocumentType *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMDocumentType *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMDocumentType *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMDocumentType *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMDocumentType *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMDocumentType *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMDocumentType *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMDocumentType *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMDocumentType *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMDocumentType *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMDocumentType *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMDocumentType *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMDocumentType *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMDocumentType *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMDocumentType *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMDocumentType *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMDocumentType *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMDocumentType *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMDocumentType *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMDocumentType *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMDocumentType *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMDocumentType *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMDocumentType *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMDocumentType *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMDocumentType *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-      HRESULT (__attribute__((__stdcall__)) *get_name)(IXMLDOMDocumentType *This,BSTR *rootName);
-      HRESULT (__attribute__((__stdcall__)) *get_entities)(IXMLDOMDocumentType *This,IXMLDOMNamedNodeMap **entityMap);
-      HRESULT (__attribute__((__stdcall__)) *get_notations)(IXMLDOMDocumentType *This,IXMLDOMNamedNodeMap **notationMap);
-   
-  } IXMLDOMDocumentTypeVtbl;
-  struct IXMLDOMDocumentType {
-    struct IXMLDOMDocumentTypeVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocumentType_get_name_Proxy(IXMLDOMDocumentType *This,BSTR *rootName);
-  void __attribute__((__stdcall__)) IXMLDOMDocumentType_get_name_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocumentType_get_entities_Proxy(IXMLDOMDocumentType *This,IXMLDOMNamedNodeMap **entityMap);
-  void __attribute__((__stdcall__)) IXMLDOMDocumentType_get_entities_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMDocumentType_get_notations_Proxy(IXMLDOMDocumentType *This,IXMLDOMNamedNodeMap **notationMap);
-  void __attribute__((__stdcall__)) IXMLDOMDocumentType_get_notations_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDOMNotation_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMNotation;
-  typedef struct IXMLDOMNotationVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMNotation *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMNotation *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMNotation *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMNotation *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMNotation *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMNotation *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMNotation *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMNotation *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMNotation *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMNotation *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMNotation *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMNotation *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMNotation *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMNotation *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMNotation *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMNotation *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMNotation *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMNotation *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMNotation *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMNotation *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMNotation *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMNotation *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMNotation *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMNotation *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMNotation *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMNotation *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMNotation *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMNotation *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMNotation *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMNotation *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMNotation *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMNotation *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMNotation *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMNotation *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMNotation *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMNotation *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMNotation *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMNotation *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMNotation *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMNotation *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMNotation *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMNotation *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMNotation *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-      HRESULT (__attribute__((__stdcall__)) *get_publicId)(IXMLDOMNotation *This,VARIANT *publicID);
-      HRESULT (__attribute__((__stdcall__)) *get_systemId)(IXMLDOMNotation *This,VARIANT *systemID);
-   
-  } IXMLDOMNotationVtbl;
-  struct IXMLDOMNotation {
-    struct IXMLDOMNotationVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNotation_get_publicId_Proxy(IXMLDOMNotation *This,VARIANT *publicID);
-  void __attribute__((__stdcall__)) IXMLDOMNotation_get_publicId_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMNotation_get_systemId_Proxy(IXMLDOMNotation *This,VARIANT *systemID);
-  void __attribute__((__stdcall__)) IXMLDOMNotation_get_systemId_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDOMEntity_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMEntity;
-  typedef struct IXMLDOMEntityVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMEntity *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMEntity *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMEntity *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMEntity *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMEntity *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMEntity *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMEntity *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMEntity *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMEntity *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMEntity *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMEntity *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMEntity *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMEntity *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMEntity *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMEntity *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMEntity *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMEntity *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMEntity *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMEntity *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMEntity *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMEntity *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMEntity *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMEntity *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMEntity *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMEntity *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMEntity *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMEntity *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMEntity *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMEntity *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMEntity *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMEntity *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMEntity *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMEntity *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMEntity *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMEntity *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMEntity *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMEntity *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMEntity *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMEntity *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMEntity *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMEntity *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMEntity *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMEntity *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-      HRESULT (__attribute__((__stdcall__)) *get_publicId)(IXMLDOMEntity *This,VARIANT *publicID);
-      HRESULT (__attribute__((__stdcall__)) *get_systemId)(IXMLDOMEntity *This,VARIANT *systemID);
-      HRESULT (__attribute__((__stdcall__)) *get_notationName)(IXMLDOMEntity *This,BSTR *name);
-   
-  } IXMLDOMEntityVtbl;
-  struct IXMLDOMEntity {
-    struct IXMLDOMEntityVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMEntity_get_publicId_Proxy(IXMLDOMEntity *This,VARIANT *publicID);
-  void __attribute__((__stdcall__)) IXMLDOMEntity_get_publicId_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMEntity_get_systemId_Proxy(IXMLDOMEntity *This,VARIANT *systemID);
-  void __attribute__((__stdcall__)) IXMLDOMEntity_get_systemId_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMEntity_get_notationName_Proxy(IXMLDOMEntity *This,BSTR *name);
-  void __attribute__((__stdcall__)) IXMLDOMEntity_get_notationName_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDOMEntityReference_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMEntityReference;
-  typedef struct IXMLDOMEntityReferenceVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMEntityReference *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMEntityReference *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMEntityReference *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMEntityReference *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMEntityReference *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMEntityReference *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMEntityReference *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXMLDOMEntityReference *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXMLDOMEntityReference *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXMLDOMEntityReference *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXMLDOMEntityReference *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXMLDOMEntityReference *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXMLDOMEntityReference *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXMLDOMEntityReference *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXMLDOMEntityReference *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXMLDOMEntityReference *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXMLDOMEntityReference *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLDOMEntityReference *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXMLDOMEntityReference *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXMLDOMEntityReference *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLDOMEntityReference *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXMLDOMEntityReference *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXMLDOMEntityReference *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXMLDOMEntityReference *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXMLDOMEntityReference *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXMLDOMEntityReference *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLDOMEntityReference *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLDOMEntityReference *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXMLDOMEntityReference *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXMLDOMEntityReference *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXMLDOMEntityReference *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXMLDOMEntityReference *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXMLDOMEntityReference *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXMLDOMEntityReference *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXMLDOMEntityReference *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXMLDOMEntityReference *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXMLDOMEntityReference *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXMLDOMEntityReference *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXMLDOMEntityReference *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXMLDOMEntityReference *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXMLDOMEntityReference *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXMLDOMEntityReference *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXMLDOMEntityReference *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-   
-  } IXMLDOMEntityReferenceVtbl;
-  struct IXMLDOMEntityReference {
-    struct IXMLDOMEntityReferenceVtbl *lpVtbl;
-  };
-#define __IXMLDOMParseError_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDOMParseError;
-  typedef struct IXMLDOMParseErrorVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDOMParseError *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDOMParseError *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDOMParseError *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDOMParseError *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDOMParseError *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDOMParseError *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDOMParseError *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_errorCode)(IXMLDOMParseError *This,LONG *errorCode);
-      HRESULT (__attribute__((__stdcall__)) *get_url)(IXMLDOMParseError *This,BSTR *urlString);
-      HRESULT (__attribute__((__stdcall__)) *get_reason)(IXMLDOMParseError *This,BSTR *reasonString);
-      HRESULT (__attribute__((__stdcall__)) *get_srcText)(IXMLDOMParseError *This,BSTR *sourceString);
-      HRESULT (__attribute__((__stdcall__)) *get_line)(IXMLDOMParseError *This,LONG *lineNumber);
-      HRESULT (__attribute__((__stdcall__)) *get_linepos)(IXMLDOMParseError *This,LONG *linePosition);
-      HRESULT (__attribute__((__stdcall__)) *get_filepos)(IXMLDOMParseError *This,LONG *filePosition);
-   
-  } IXMLDOMParseErrorVtbl;
-  struct IXMLDOMParseError {
-    struct IXMLDOMParseErrorVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDOMParseError_get_errorCode_Proxy(IXMLDOMParseError *This,LONG *errorCode);
-  void __attribute__((__stdcall__)) IXMLDOMParseError_get_errorCode_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMParseError_get_url_Proxy(IXMLDOMParseError *This,BSTR *urlString);
-  void __attribute__((__stdcall__)) IXMLDOMParseError_get_url_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMParseError_get_reason_Proxy(IXMLDOMParseError *This,BSTR *reasonString);
-  void __attribute__((__stdcall__)) IXMLDOMParseError_get_reason_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMParseError_get_srcText_Proxy(IXMLDOMParseError *This,BSTR *sourceString);
-  void __attribute__((__stdcall__)) IXMLDOMParseError_get_srcText_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMParseError_get_line_Proxy(IXMLDOMParseError *This,LONG *lineNumber);
-  void __attribute__((__stdcall__)) IXMLDOMParseError_get_line_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMParseError_get_linepos_Proxy(IXMLDOMParseError *This,LONG *linePosition);
-  void __attribute__((__stdcall__)) IXMLDOMParseError_get_linepos_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDOMParseError_get_filepos_Proxy(IXMLDOMParseError *This,LONG *filePosition);
-  void __attribute__((__stdcall__)) IXMLDOMParseError_get_filepos_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXTLRuntime_INTERFACE_DEFINED__ 
-  extern const IID IID_IXTLRuntime;
-  typedef struct IXTLRuntimeVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXTLRuntime *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXTLRuntime *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXTLRuntime *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXTLRuntime *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXTLRuntime *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXTLRuntime *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXTLRuntime *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeName)(IXTLRuntime *This,BSTR *name);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeValue)(IXTLRuntime *This,VARIANT *value);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeValue)(IXTLRuntime *This,VARIANT value);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeType)(IXTLRuntime *This,DOMNodeType *type);
-      HRESULT (__attribute__((__stdcall__)) *get_parentNode)(IXTLRuntime *This,IXMLDOMNode **parent);
-      HRESULT (__attribute__((__stdcall__)) *get_childNodes)(IXTLRuntime *This,IXMLDOMNodeList **childList);
-      HRESULT (__attribute__((__stdcall__)) *get_firstChild)(IXTLRuntime *This,IXMLDOMNode **firstChild);
-      HRESULT (__attribute__((__stdcall__)) *get_lastChild)(IXTLRuntime *This,IXMLDOMNode **lastChild);
-      HRESULT (__attribute__((__stdcall__)) *get_previousSibling)(IXTLRuntime *This,IXMLDOMNode **previousSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_nextSibling)(IXTLRuntime *This,IXMLDOMNode **nextSibling);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXTLRuntime *This,IXMLDOMNamedNodeMap **attributeMap);
-      HRESULT (__attribute__((__stdcall__)) *insertBefore)(IXTLRuntime *This,IXMLDOMNode *newChild,VARIANT refChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *replaceChild)(IXTLRuntime *This,IXMLDOMNode *newChild,IXMLDOMNode *oldChild,IXMLDOMNode **outOldChild);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXTLRuntime *This,IXMLDOMNode *childNode,IXMLDOMNode **oldChild);
-      HRESULT (__attribute__((__stdcall__)) *appendChild)(IXTLRuntime *This,IXMLDOMNode *newChild,IXMLDOMNode **outNewChild);
-      HRESULT (__attribute__((__stdcall__)) *hasChildNodes)(IXTLRuntime *This,VARIANT_BOOL *hasChild);
-      HRESULT (__attribute__((__stdcall__)) *get_ownerDocument)(IXTLRuntime *This,IXMLDOMDocument **DOMDocument);
-      HRESULT (__attribute__((__stdcall__)) *cloneNode)(IXTLRuntime *This,VARIANT_BOOL deep,IXMLDOMNode **cloneRoot);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypeString)(IXTLRuntime *This,BSTR *nodeType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXTLRuntime *This,BSTR *text);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXTLRuntime *This,BSTR text);
-      HRESULT (__attribute__((__stdcall__)) *get_specified)(IXTLRuntime *This,VARIANT_BOOL *isSpecified);
-      HRESULT (__attribute__((__stdcall__)) *get_definition)(IXTLRuntime *This,IXMLDOMNode **definitionNode);
-      HRESULT (__attribute__((__stdcall__)) *get_nodeTypedValue)(IXTLRuntime *This,VARIANT *typedValue);
-      HRESULT (__attribute__((__stdcall__)) *put_nodeTypedValue)(IXTLRuntime *This,VARIANT typedValue);
-      HRESULT (__attribute__((__stdcall__)) *get_dataType)(IXTLRuntime *This,VARIANT *dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *put_dataType)(IXTLRuntime *This,BSTR dataTypeName);
-      HRESULT (__attribute__((__stdcall__)) *get_xml)(IXTLRuntime *This,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *transformNode)(IXTLRuntime *This,IXMLDOMNode *stylesheet,BSTR *xmlString);
-      HRESULT (__attribute__((__stdcall__)) *selectNodes)(IXTLRuntime *This,BSTR queryString,IXMLDOMNodeList **resultList);
-      HRESULT (__attribute__((__stdcall__)) *selectSingleNode)(IXTLRuntime *This,BSTR queryString,IXMLDOMNode **resultNode);
-      HRESULT (__attribute__((__stdcall__)) *get_parsed)(IXTLRuntime *This,VARIANT_BOOL *isParsed);
-      HRESULT (__attribute__((__stdcall__)) *get_namespaceURI)(IXTLRuntime *This,BSTR *namespaceURI);
-      HRESULT (__attribute__((__stdcall__)) *get_prefix)(IXTLRuntime *This,BSTR *prefixString);
-      HRESULT (__attribute__((__stdcall__)) *get_baseName)(IXTLRuntime *This,BSTR *nameString);
-      HRESULT (__attribute__((__stdcall__)) *transformNodeToObject)(IXTLRuntime *This,IXMLDOMNode *stylesheet,VARIANT outputObject);
-      HRESULT (__attribute__((__stdcall__)) *uniqueID)(IXTLRuntime *This,IXMLDOMNode *pNode,LONG *pID);
-      HRESULT (__attribute__((__stdcall__)) *depth)(IXTLRuntime *This,IXMLDOMNode *pNode,LONG *pDepth);
-      HRESULT (__attribute__((__stdcall__)) *childNumber)(IXTLRuntime *This,IXMLDOMNode *pNode,LONG *pNumber);
-      HRESULT (__attribute__((__stdcall__)) *ancestorChildNumber)(IXTLRuntime *This,BSTR bstrNodeName,IXMLDOMNode *pNode,LONG *pNumber);
-      HRESULT (__attribute__((__stdcall__)) *absoluteChildNumber)(IXTLRuntime *This,IXMLDOMNode *pNode,LONG *pNumber);
-      HRESULT (__attribute__((__stdcall__)) *formatIndex)(IXTLRuntime *This,LONG lIndex,BSTR bstrFormat,BSTR *pbstrFormattedString);
-      HRESULT (__attribute__((__stdcall__)) *formatNumber)(IXTLRuntime *This,double dblNumber,BSTR bstrFormat,BSTR *pbstrFormattedString);
-      HRESULT (__attribute__((__stdcall__)) *formatDate)(IXTLRuntime *This,VARIANT varDate,BSTR bstrFormat,VARIANT varDestLocale,BSTR *pbstrFormattedString);
-      HRESULT (__attribute__((__stdcall__)) *formatTime)(IXTLRuntime *This,VARIANT varTime,BSTR bstrFormat,VARIANT varDestLocale,BSTR *pbstrFormattedString);
-   
-  } IXTLRuntimeVtbl;
-  struct IXTLRuntime {
-    struct IXTLRuntimeVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXTLRuntime_uniqueID_Proxy(IXTLRuntime *This,IXMLDOMNode *pNode,LONG *pID);
-  void __attribute__((__stdcall__)) IXTLRuntime_uniqueID_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXTLRuntime_depth_Proxy(IXTLRuntime *This,IXMLDOMNode *pNode,LONG *pDepth);
-  void __attribute__((__stdcall__)) IXTLRuntime_depth_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXTLRuntime_childNumber_Proxy(IXTLRuntime *This,IXMLDOMNode *pNode,LONG *pNumber);
-  void __attribute__((__stdcall__)) IXTLRuntime_childNumber_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXTLRuntime_ancestorChildNumber_Proxy(IXTLRuntime *This,BSTR bstrNodeName,IXMLDOMNode *pNode,LONG *pNumber);
-  void __attribute__((__stdcall__)) IXTLRuntime_ancestorChildNumber_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXTLRuntime_absoluteChildNumber_Proxy(IXTLRuntime *This,IXMLDOMNode *pNode,LONG *pNumber);
-  void __attribute__((__stdcall__)) IXTLRuntime_absoluteChildNumber_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXTLRuntime_formatIndex_Proxy(IXTLRuntime *This,LONG lIndex,BSTR bstrFormat,BSTR *pbstrFormattedString);
-  void __attribute__((__stdcall__)) IXTLRuntime_formatIndex_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXTLRuntime_formatNumber_Proxy(IXTLRuntime *This,double dblNumber,BSTR bstrFormat,BSTR *pbstrFormattedString);
-  void __attribute__((__stdcall__)) IXTLRuntime_formatNumber_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXTLRuntime_formatDate_Proxy(IXTLRuntime *This,VARIANT varDate,BSTR bstrFormat,VARIANT varDestLocale,BSTR *pbstrFormattedString);
-  void __attribute__((__stdcall__)) IXTLRuntime_formatDate_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXTLRuntime_formatTime_Proxy(IXTLRuntime *This,VARIANT varTime,BSTR bstrFormat,VARIANT varDestLocale,BSTR *pbstrFormattedString);
-  void __attribute__((__stdcall__)) IXTLRuntime_formatTime_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __XMLDOMDocumentEvents_DISPINTERFACE_DEFINED__ 
-  extern const IID DIID_XMLDOMDocumentEvents;
-  typedef struct XMLDOMDocumentEventsVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(XMLDOMDocumentEvents *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(XMLDOMDocumentEvents *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(XMLDOMDocumentEvents *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(XMLDOMDocumentEvents *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(XMLDOMDocumentEvents *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(XMLDOMDocumentEvents *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(XMLDOMDocumentEvents *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-   
-  } XMLDOMDocumentEventsVtbl;
-  struct XMLDOMDocumentEvents {
-    struct XMLDOMDocumentEventsVtbl *lpVtbl;
-  };
-  extern const CLSID CLSID_DOMDocument;
-  extern const CLSID CLSID_DOMFreeThreadedDocument;
-#define __IXMLHttpRequest_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLHttpRequest;
-  typedef struct IXMLHttpRequestVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLHttpRequest *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLHttpRequest *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLHttpRequest *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLHttpRequest *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLHttpRequest *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLHttpRequest *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLHttpRequest *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *open)(IXMLHttpRequest *This,BSTR bstrMethod,BSTR bstrUrl,VARIANT varAsync,VARIANT bstrUser,VARIANT bstrPassword);
-      HRESULT (__attribute__((__stdcall__)) *setRequestHeader)(IXMLHttpRequest *This,BSTR bstrHeader,BSTR bstrValue);
-      HRESULT (__attribute__((__stdcall__)) *getResponseHeader)(IXMLHttpRequest *This,BSTR bstrHeader,BSTR *pbstrValue);
-      HRESULT (__attribute__((__stdcall__)) *getAllResponseHeaders)(IXMLHttpRequest *This,BSTR *pbstrHeaders);
-      HRESULT (__attribute__((__stdcall__)) *send)(IXMLHttpRequest *This,VARIANT varBody);
-      HRESULT (__attribute__((__stdcall__)) *abort)(IXMLHttpRequest *This);
-      HRESULT (__attribute__((__stdcall__)) *get_status)(IXMLHttpRequest *This,LONG *plStatus);
-      HRESULT (__attribute__((__stdcall__)) *get_statusText)(IXMLHttpRequest *This,BSTR *pbstrStatus);
-      HRESULT (__attribute__((__stdcall__)) *get_responseXML)(IXMLHttpRequest *This,IDispatch **ppBody);
-      HRESULT (__attribute__((__stdcall__)) *get_responseText)(IXMLHttpRequest *This,BSTR *pbstrBody);
-      HRESULT (__attribute__((__stdcall__)) *get_responseBody)(IXMLHttpRequest *This,VARIANT *pvarBody);
-      HRESULT (__attribute__((__stdcall__)) *get_responseStream)(IXMLHttpRequest *This,VARIANT *pvarBody);
-      HRESULT (__attribute__((__stdcall__)) *get_readyState)(IXMLHttpRequest *This,LONG *plState);
-      HRESULT (__attribute__((__stdcall__)) *put_onreadystatechange)(IXMLHttpRequest *This,IDispatch *pReadyStateSink);
-   
-  } IXMLHttpRequestVtbl;
-  struct IXMLHttpRequest {
-    struct IXMLHttpRequestVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_open_Proxy(IXMLHttpRequest *This,BSTR bstrMethod,BSTR bstrUrl,VARIANT varAsync,VARIANT bstrUser,VARIANT bstrPassword);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_open_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_setRequestHeader_Proxy(IXMLHttpRequest *This,BSTR bstrHeader,BSTR bstrValue);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_setRequestHeader_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_getResponseHeader_Proxy(IXMLHttpRequest *This,BSTR bstrHeader,BSTR *pbstrValue);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_getResponseHeader_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_getAllResponseHeaders_Proxy(IXMLHttpRequest *This,BSTR *pbstrHeaders);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_getAllResponseHeaders_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_send_Proxy(IXMLHttpRequest *This,VARIANT varBody);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_send_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_abort_Proxy(IXMLHttpRequest *This);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_abort_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_get_status_Proxy(IXMLHttpRequest *This,LONG *plStatus);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_get_status_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_get_statusText_Proxy(IXMLHttpRequest *This,BSTR *pbstrStatus);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_get_statusText_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_get_responseXML_Proxy(IXMLHttpRequest *This,IDispatch **ppBody);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_get_responseXML_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_get_responseText_Proxy(IXMLHttpRequest *This,BSTR *pbstrBody);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_get_responseText_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_get_responseBody_Proxy(IXMLHttpRequest *This,VARIANT *pvarBody);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_get_responseBody_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_get_responseStream_Proxy(IXMLHttpRequest *This,VARIANT *pvarBody);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_get_responseStream_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_get_readyState_Proxy(IXMLHttpRequest *This,LONG *plState);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_get_readyState_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLHttpRequest_put_onreadystatechange_Proxy(IXMLHttpRequest *This,IDispatch *pReadyStateSink);
-  void __attribute__((__stdcall__)) IXMLHttpRequest_put_onreadystatechange_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  extern const CLSID CLSID_XMLHTTPRequest;
-#define __IXMLDSOControl_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDSOControl;
-  typedef struct IXMLDSOControlVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDSOControl *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDSOControl *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDSOControl *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDSOControl *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDSOControl *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDSOControl *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDSOControl *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_XMLDocument)(IXMLDSOControl *This,IXMLDOMDocument **ppDoc);
-      HRESULT (__attribute__((__stdcall__)) *put_XMLDocument)(IXMLDSOControl *This,IXMLDOMDocument *ppDoc);
-      HRESULT (__attribute__((__stdcall__)) *get_JavaDSOCompatible)(IXMLDSOControl *This,WINBOOL *fJavaDSOCompatible);
-      HRESULT (__attribute__((__stdcall__)) *put_JavaDSOCompatible)(IXMLDSOControl *This,WINBOOL fJavaDSOCompatible);
-      HRESULT (__attribute__((__stdcall__)) *get_readyState)(IXMLDSOControl *This,LONG *state);
-   
-  } IXMLDSOControlVtbl;
-  struct IXMLDSOControl {
-    struct IXMLDSOControlVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDSOControl_get_XMLDocument_Proxy(IXMLDSOControl *This,IXMLDOMDocument **ppDoc);
-  void __attribute__((__stdcall__)) IXMLDSOControl_get_XMLDocument_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDSOControl_put_XMLDocument_Proxy(IXMLDSOControl *This,IXMLDOMDocument *ppDoc);
-  void __attribute__((__stdcall__)) IXMLDSOControl_put_XMLDocument_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDSOControl_get_JavaDSOCompatible_Proxy(IXMLDSOControl *This,WINBOOL *fJavaDSOCompatible);
-  void __attribute__((__stdcall__)) IXMLDSOControl_get_JavaDSOCompatible_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDSOControl_put_JavaDSOCompatible_Proxy(IXMLDSOControl *This,WINBOOL fJavaDSOCompatible);
-  void __attribute__((__stdcall__)) IXMLDSOControl_put_JavaDSOCompatible_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDSOControl_get_readyState_Proxy(IXMLDSOControl *This,LONG *state);
-  void __attribute__((__stdcall__)) IXMLDSOControl_get_readyState_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  extern const CLSID CLSID_XMLDSOControl;
-#define __IXMLElementCollection_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLElementCollection;
-  typedef struct IXMLElementCollectionVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLElementCollection *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLElementCollection *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLElementCollection *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLElementCollection *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLElementCollection *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLElementCollection *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLElementCollection *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *put_length)(IXMLElementCollection *This,LONG v);
-      HRESULT (__attribute__((__stdcall__)) *get_length)(IXMLElementCollection *This,LONG *p);
-      HRESULT (__attribute__((__stdcall__)) *get__newEnum)(IXMLElementCollection *This,IUnknown **ppUnk);
-      HRESULT (__attribute__((__stdcall__)) *item)(IXMLElementCollection *This,VARIANT var1,VARIANT var2,IDispatch **ppDisp);
-   
-  } IXMLElementCollectionVtbl;
-  struct IXMLElementCollection {
-    struct IXMLElementCollectionVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLElementCollection_put_length_Proxy(IXMLElementCollection *This,LONG v);
-  void __attribute__((__stdcall__)) IXMLElementCollection_put_length_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElementCollection_get_length_Proxy(IXMLElementCollection *This,LONG *p);
-  void __attribute__((__stdcall__)) IXMLElementCollection_get_length_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElementCollection_get__newEnum_Proxy(IXMLElementCollection *This,IUnknown **ppUnk);
-  void __attribute__((__stdcall__)) IXMLElementCollection_get__newEnum_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElementCollection_item_Proxy(IXMLElementCollection *This,VARIANT var1,VARIANT var2,IDispatch **ppDisp);
-  void __attribute__((__stdcall__)) IXMLElementCollection_item_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDocument_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDocument;
-  typedef struct IXMLDocumentVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDocument *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDocument *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDocument *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDocument *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDocument *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDocument *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDocument *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_root)(IXMLDocument *This,IXMLElement **p);
-      HRESULT (__attribute__((__stdcall__)) *get_fileSize)(IXMLDocument *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *get_fileModifiedDate)(IXMLDocument *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *get_fileUpdatedDate)(IXMLDocument *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *get_URL)(IXMLDocument *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *put_URL)(IXMLDocument *This,BSTR p);
-      HRESULT (__attribute__((__stdcall__)) *get_mimeType)(IXMLDocument *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *get_readyState)(IXMLDocument *This,LONG *pl);
-      HRESULT (__attribute__((__stdcall__)) *get_charset)(IXMLDocument *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *put_charset)(IXMLDocument *This,BSTR p);
-      HRESULT (__attribute__((__stdcall__)) *get_version)(IXMLDocument *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *get_doctype)(IXMLDocument *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *get_dtdURL)(IXMLDocument *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *createElement)(IXMLDocument *This,VARIANT vType,VARIANT var1,IXMLElement **ppElem);
-   
-  } IXMLDocumentVtbl;
-  struct IXMLDocument {
-    struct IXMLDocumentVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_get_root_Proxy(IXMLDocument *This,IXMLElement **p);
-  void __attribute__((__stdcall__)) IXMLDocument_get_root_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_get_fileSize_Proxy(IXMLDocument *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument_get_fileSize_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_get_fileModifiedDate_Proxy(IXMLDocument *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument_get_fileModifiedDate_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_get_fileUpdatedDate_Proxy(IXMLDocument *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument_get_fileUpdatedDate_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_get_URL_Proxy(IXMLDocument *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument_get_URL_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_put_URL_Proxy(IXMLDocument *This,BSTR p);
-  void __attribute__((__stdcall__)) IXMLDocument_put_URL_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_get_mimeType_Proxy(IXMLDocument *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument_get_mimeType_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_get_readyState_Proxy(IXMLDocument *This,LONG *pl);
-  void __attribute__((__stdcall__)) IXMLDocument_get_readyState_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_get_charset_Proxy(IXMLDocument *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument_get_charset_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_put_charset_Proxy(IXMLDocument *This,BSTR p);
-  void __attribute__((__stdcall__)) IXMLDocument_put_charset_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_get_version_Proxy(IXMLDocument *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument_get_version_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_get_doctype_Proxy(IXMLDocument *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument_get_doctype_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_get_dtdURL_Proxy(IXMLDocument *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument_get_dtdURL_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument_createElement_Proxy(IXMLDocument *This,VARIANT vType,VARIANT var1,IXMLElement **ppElem);
-  void __attribute__((__stdcall__)) IXMLDocument_createElement_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLDocument2_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLDocument2;
-  typedef struct IXMLDocument2Vtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLDocument2 *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLDocument2 *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLDocument2 *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLDocument2 *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLDocument2 *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLDocument2 *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLDocument2 *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_root)(IXMLDocument2 *This,IXMLElement2 **p);
-      HRESULT (__attribute__((__stdcall__)) *get_fileSize)(IXMLDocument2 *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *get_fileModifiedDate)(IXMLDocument2 *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *get_fileUpdatedDate)(IXMLDocument2 *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *get_URL)(IXMLDocument2 *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *put_URL)(IXMLDocument2 *This,BSTR p);
-      HRESULT (__attribute__((__stdcall__)) *get_mimeType)(IXMLDocument2 *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *get_readyState)(IXMLDocument2 *This,LONG *pl);
-      HRESULT (__attribute__((__stdcall__)) *get_charset)(IXMLDocument2 *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *put_charset)(IXMLDocument2 *This,BSTR p);
-      HRESULT (__attribute__((__stdcall__)) *get_version)(IXMLDocument2 *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *get_doctype)(IXMLDocument2 *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *get_dtdURL)(IXMLDocument2 *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *createElement)(IXMLDocument2 *This,VARIANT vType,VARIANT var1,IXMLElement2 **ppElem);
-      HRESULT (__attribute__((__stdcall__)) *get_async)(IXMLDocument2 *This,VARIANT_BOOL *pf);
-      HRESULT (__attribute__((__stdcall__)) *put_async)(IXMLDocument2 *This,VARIANT_BOOL f);
-   
-  } IXMLDocument2Vtbl;
-  struct IXMLDocument2 {
-    struct IXMLDocument2Vtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_get_root_Proxy(IXMLDocument2 *This,IXMLElement2 **p);
-  void __attribute__((__stdcall__)) IXMLDocument2_get_root_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_get_fileSize_Proxy(IXMLDocument2 *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument2_get_fileSize_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_get_fileModifiedDate_Proxy(IXMLDocument2 *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument2_get_fileModifiedDate_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_get_fileUpdatedDate_Proxy(IXMLDocument2 *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument2_get_fileUpdatedDate_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_get_URL_Proxy(IXMLDocument2 *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument2_get_URL_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_put_URL_Proxy(IXMLDocument2 *This,BSTR p);
-  void __attribute__((__stdcall__)) IXMLDocument2_put_URL_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_get_mimeType_Proxy(IXMLDocument2 *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument2_get_mimeType_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_get_readyState_Proxy(IXMLDocument2 *This,LONG *pl);
-  void __attribute__((__stdcall__)) IXMLDocument2_get_readyState_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_get_charset_Proxy(IXMLDocument2 *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument2_get_charset_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_put_charset_Proxy(IXMLDocument2 *This,BSTR p);
-  void __attribute__((__stdcall__)) IXMLDocument2_put_charset_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_get_version_Proxy(IXMLDocument2 *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument2_get_version_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_get_doctype_Proxy(IXMLDocument2 *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument2_get_doctype_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_get_dtdURL_Proxy(IXMLDocument2 *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLDocument2_get_dtdURL_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_createElement_Proxy(IXMLDocument2 *This,VARIANT vType,VARIANT var1,IXMLElement2 **ppElem);
-  void __attribute__((__stdcall__)) IXMLDocument2_createElement_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_get_async_Proxy(IXMLDocument2 *This,VARIANT_BOOL *pf);
-  void __attribute__((__stdcall__)) IXMLDocument2_get_async_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLDocument2_put_async_Proxy(IXMLDocument2 *This,VARIANT_BOOL f);
-  void __attribute__((__stdcall__)) IXMLDocument2_put_async_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLElement_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLElement;
-  typedef struct IXMLElementVtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLElement *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLElement *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLElement *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLElement *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLElement *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLElement *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLElement *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_tagName)(IXMLElement *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *put_tagName)(IXMLElement *This,BSTR p);
-      HRESULT (__attribute__((__stdcall__)) *get_parent)(IXMLElement *This,IXMLElement **ppParent);
-      HRESULT (__attribute__((__stdcall__)) *setAttribute)(IXMLElement *This,BSTR strPropertyName,VARIANT PropertyValue);
-      HRESULT (__attribute__((__stdcall__)) *getAttribute)(IXMLElement *This,BSTR strPropertyName,VARIANT *PropertyValue);
-      HRESULT (__attribute__((__stdcall__)) *removeAttribute)(IXMLElement *This,BSTR strPropertyName);
-      HRESULT (__attribute__((__stdcall__)) *get_children)(IXMLElement *This,IXMLElementCollection **pp);
-      HRESULT (__attribute__((__stdcall__)) *get_type)(IXMLElement *This,LONG *plType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLElement *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLElement *This,BSTR p);
-      HRESULT (__attribute__((__stdcall__)) *addChild)(IXMLElement *This,IXMLElement *pChildElem,LONG lIndex,LONG lReserved);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLElement *This,IXMLElement *pChildElem);
-   
-  } IXMLElementVtbl;
-  struct IXMLElement {
-    struct IXMLElementVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLElement_get_tagName_Proxy(IXMLElement *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLElement_get_tagName_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement_put_tagName_Proxy(IXMLElement *This,BSTR p);
-  void __attribute__((__stdcall__)) IXMLElement_put_tagName_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement_get_parent_Proxy(IXMLElement *This,IXMLElement **ppParent);
-  void __attribute__((__stdcall__)) IXMLElement_get_parent_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement_setAttribute_Proxy(IXMLElement *This,BSTR strPropertyName,VARIANT PropertyValue);
-  void __attribute__((__stdcall__)) IXMLElement_setAttribute_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement_getAttribute_Proxy(IXMLElement *This,BSTR strPropertyName,VARIANT *PropertyValue);
-  void __attribute__((__stdcall__)) IXMLElement_getAttribute_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement_removeAttribute_Proxy(IXMLElement *This,BSTR strPropertyName);
-  void __attribute__((__stdcall__)) IXMLElement_removeAttribute_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement_get_children_Proxy(IXMLElement *This,IXMLElementCollection **pp);
-  void __attribute__((__stdcall__)) IXMLElement_get_children_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement_get_type_Proxy(IXMLElement *This,LONG *plType);
-  void __attribute__((__stdcall__)) IXMLElement_get_type_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement_get_text_Proxy(IXMLElement *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLElement_get_text_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement_put_text_Proxy(IXMLElement *This,BSTR p);
-  void __attribute__((__stdcall__)) IXMLElement_put_text_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement_addChild_Proxy(IXMLElement *This,IXMLElement *pChildElem,LONG lIndex,LONG lReserved);
-  void __attribute__((__stdcall__)) IXMLElement_addChild_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement_removeChild_Proxy(IXMLElement *This,IXMLElement *pChildElem);
-  void __attribute__((__stdcall__)) IXMLElement_removeChild_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-#define __IXMLElement2_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLElement2;
-  typedef struct IXMLElement2Vtbl {
-   
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLElement2 *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLElement2 *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLElement2 *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLElement2 *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLElement2 *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLElement2 *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLElement2 *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_tagName)(IXMLElement2 *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *put_tagName)(IXMLElement2 *This,BSTR p);
-      HRESULT (__attribute__((__stdcall__)) *get_parent)(IXMLElement2 *This,IXMLElement2 **ppParent);
-      HRESULT (__attribute__((__stdcall__)) *setAttribute)(IXMLElement2 *This,BSTR strPropertyName,VARIANT PropertyValue);
-      HRESULT (__attribute__((__stdcall__)) *getAttribute)(IXMLElement2 *This,BSTR strPropertyName,VARIANT *PropertyValue);
-      HRESULT (__attribute__((__stdcall__)) *removeAttribute)(IXMLElement2 *This,BSTR strPropertyName);
-      HRESULT (__attribute__((__stdcall__)) *get_children)(IXMLElement2 *This,IXMLElementCollection **pp);
-      HRESULT (__attribute__((__stdcall__)) *get_type)(IXMLElement2 *This,LONG *plType);
-      HRESULT (__attribute__((__stdcall__)) *get_text)(IXMLElement2 *This,BSTR *p);
-      HRESULT (__attribute__((__stdcall__)) *put_text)(IXMLElement2 *This,BSTR p);
-      HRESULT (__attribute__((__stdcall__)) *addChild)(IXMLElement2 *This,IXMLElement2 *pChildElem,LONG lIndex,LONG lReserved);
-      HRESULT (__attribute__((__stdcall__)) *removeChild)(IXMLElement2 *This,IXMLElement2 *pChildElem);
-      HRESULT (__attribute__((__stdcall__)) *get_attributes)(IXMLElement2 *This,IXMLElementCollection **pp);
-   
-  } IXMLElement2Vtbl;
-  struct IXMLElement2 {
-    struct IXMLElement2Vtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLElement2_get_tagName_Proxy(IXMLElement2 *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLElement2_get_tagName_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement2_put_tagName_Proxy(IXMLElement2 *This,BSTR p);
-  void __attribute__((__stdcall__)) IXMLElement2_put_tagName_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement2_get_parent_Proxy(IXMLElement2 *This,IXMLElement2 **ppParent);
-  void __attribute__((__stdcall__)) IXMLElement2_get_parent_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement2_setAttribute_Proxy(IXMLElement2 *This,BSTR strPropertyName,VARIANT PropertyValue);
-  void __attribute__((__stdcall__)) IXMLElement2_setAttribute_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement2_getAttribute_Proxy(IXMLElement2 *This,BSTR strPropertyName,VARIANT *PropertyValue);
-  void __attribute__((__stdcall__)) IXMLElement2_getAttribute_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement2_removeAttribute_Proxy(IXMLElement2 *This,BSTR strPropertyName);
-  void __attribute__((__stdcall__)) IXMLElement2_removeAttribute_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement2_get_children_Proxy(IXMLElement2 *This,IXMLElementCollection **pp);
-  void __attribute__((__stdcall__)) IXMLElement2_get_children_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement2_get_type_Proxy(IXMLElement2 *This,LONG *plType);
-  void __attribute__((__stdcall__)) IXMLElement2_get_type_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement2_get_text_Proxy(IXMLElement2 *This,BSTR *p);
-  void __attribute__((__stdcall__)) IXMLElement2_get_text_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement2_put_text_Proxy(IXMLElement2 *This,BSTR p);
-  void __attribute__((__stdcall__)) IXMLElement2_put_text_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement2_addChild_Proxy(IXMLElement2 *This,IXMLElement2 *pChildElem,LONG lIndex,LONG lReserved);
-  void __attribute__((__stdcall__)) IXMLElement2_addChild_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement2_removeChild_Proxy(IXMLElement2 *This,IXMLElement2 *pChildElem);
-  void __attribute__((__stdcall__)) IXMLElement2_removeChild_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLElement2_get_attributes_Proxy(IXMLElement2 *This,IXMLElementCollection **pp);
-  void __attribute__((__stdcall__)) IXMLElement2_get_attributes_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
+} XML_ERROR;
 #define __IXMLAttribute_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLAttribute;
-  typedef struct IXMLAttributeVtbl {
+extern const GUID IID_IXMLAttribute;
+typedef struct IXMLAttributeVtbl {
    
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLAttribute *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLAttribute *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLAttribute *This);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(IXMLAttribute *This,UINT *pctinfo);
-      HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(IXMLAttribute *This,UINT iTInfo,LCID lcid,ITypeInfo **ppTInfo);
-      HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(IXMLAttribute *This,const IID *const riid,LPOLESTR *rgszNames,UINT cNames,LCID lcid,DISPID *rgDispId);
-      HRESULT (__attribute__((__stdcall__)) *Invoke)(IXMLAttribute *This,DISPID dispIdMember,const IID *const riid,LCID lcid,WORD wFlags,DISPPARAMS *pDispParams,VARIANT *pVarResult,EXCEPINFO *pExcepInfo,UINT *puArgErr);
-      HRESULT (__attribute__((__stdcall__)) *get_name)(IXMLAttribute *This,BSTR *n);
-      HRESULT (__attribute__((__stdcall__)) *get_value)(IXMLAttribute *This,BSTR *v);
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLAttribute *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLAttribute *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLAttribute *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLAttribute *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLAttribute *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLAttribute *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLAttribute *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *get_name)(
+        IXMLAttribute *This,
+        BSTR *p);
+    HRESULT (__attribute__((__stdcall__)) *get_value)(
+        IXMLAttribute *This,
+        BSTR *p);
    
-  } IXMLAttributeVtbl;
-  struct IXMLAttribute {
-    struct IXMLAttributeVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLAttribute_get_name_Proxy(IXMLAttribute *This,BSTR *n);
-  void __attribute__((__stdcall__)) IXMLAttribute_get_name_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  HRESULT __attribute__((__stdcall__)) IXMLAttribute_get_value_Proxy(IXMLAttribute *This,BSTR *v);
-  void __attribute__((__stdcall__)) IXMLAttribute_get_value_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
+} IXMLAttributeVtbl;
+struct IXMLAttribute {
+    IXMLAttributeVtbl* lpVtbl;
+};
 #define __IXMLError_INTERFACE_DEFINED__ 
-  extern const IID IID_IXMLError;
-  typedef struct IXMLErrorVtbl {
+extern const GUID IID_IXMLError;
+typedef struct IXMLErrorVtbl {
    
-      HRESULT (__attribute__((__stdcall__)) *QueryInterface)(IXMLError *This,const IID *const riid,void **ppvObject);
-      ULONG (__attribute__((__stdcall__)) *AddRef)(IXMLError *This);
-      ULONG (__attribute__((__stdcall__)) *Release)(IXMLError *This);
-      HRESULT (__attribute__((__stdcall__)) *GetErrorInfo)(IXMLError *This,XML_ERROR *pErrorReturn);
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLError *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLError *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLError *This);
+    HRESULT (__attribute__((__stdcall__)) *GetErrorInfo)(
+        IXMLError *This,
+        XML_ERROR *pErrorReturn);
    
-  } IXMLErrorVtbl;
-  struct IXMLError {
-    struct IXMLErrorVtbl *lpVtbl;
-  };
-  HRESULT __attribute__((__stdcall__)) IXMLError_GetErrorInfo_Proxy(IXMLError *This,XML_ERROR *pErrorReturn);
-  void __attribute__((__stdcall__)) IXMLError_GetErrorInfo_Stub(IRpcStubBuffer *This,IRpcChannelBuffer *_pRpcChannelBuffer,PRPC_MESSAGE _pRpcMessage,DWORD *_pdwStubPhase);
-  extern const CLSID CLSID_XMLDocument;
-       
+} IXMLErrorVtbl;
+struct IXMLError {
+    IXMLErrorVtbl* lpVtbl;
+};
+#define __IXMLElementNotificationSink_INTERFACE_DEFINED__ 
+extern const GUID IID_IXMLElementNotificationSink;
+typedef struct IXMLElementNotificationSinkVtbl {
+   
+    HRESULT (__attribute__((__stdcall__)) *QueryInterface)(
+        IXMLElementNotificationSink *This,
+        const IID *const riid,
+        void **ppvObject);
+    ULONG (__attribute__((__stdcall__)) *AddRef)(
+        IXMLElementNotificationSink *This);
+    ULONG (__attribute__((__stdcall__)) *Release)(
+        IXMLElementNotificationSink *This);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfoCount)(
+        IXMLElementNotificationSink *This,
+        UINT *pctinfo);
+    HRESULT (__attribute__((__stdcall__)) *GetTypeInfo)(
+        IXMLElementNotificationSink *This,
+        UINT iTInfo,
+        LCID lcid,
+        ITypeInfo **ppTInfo);
+    HRESULT (__attribute__((__stdcall__)) *GetIDsOfNames)(
+        IXMLElementNotificationSink *This,
+        const IID *const riid,
+        LPOLESTR *rgszNames,
+        UINT cNames,
+        LCID lcid,
+        DISPID *rgDispId);
+    HRESULT (__attribute__((__stdcall__)) *Invoke)(
+        IXMLElementNotificationSink *This,
+        DISPID dispIdMember,
+        const IID *const riid,
+        LCID lcid,
+        WORD wFlags,
+        DISPPARAMS *pDispParams,
+        VARIANT *pVarResult,
+        EXCEPINFO *pExcepInfo,
+        UINT *puArgErr);
+    HRESULT (__attribute__((__stdcall__)) *ChildAdded)(
+        IXMLElementNotificationSink *This,
+        IDispatch *pChildElem);
+   
+} IXMLElementNotificationSinkVtbl;
+struct IXMLElementNotificationSink {
+    IXMLElementNotificationSinkVtbl* lpVtbl;
+};
+extern const GUID CLSID_XMLDocument;
+ULONG __attribute__((__stdcall__)) BSTR_UserSize (ULONG *, ULONG, BSTR *);
+unsigned char * __attribute__((__stdcall__)) BSTR_UserMarshal (ULONG *, unsigned char *, BSTR *);
+unsigned char * __attribute__((__stdcall__)) BSTR_UserUnmarshal(ULONG *, unsigned char *, BSTR *);
+void __attribute__((__stdcall__)) BSTR_UserFree (ULONG *, BSTR *);
+ULONG __attribute__((__stdcall__)) VARIANT_UserSize (ULONG *, ULONG, VARIANT *);
+unsigned char * __attribute__((__stdcall__)) VARIANT_UserMarshal (ULONG *, unsigned char *, VARIANT *);
+unsigned char * __attribute__((__stdcall__)) VARIANT_UserUnmarshal(ULONG *, unsigned char *, VARIANT *);
+void __attribute__((__stdcall__)) VARIANT_UserFree (ULONG *, VARIANT *);
 #define __IBindStatusCallbackMsg_FWD_DEFINED__ 
 typedef struct IBindStatusCallbackMsg IBindStatusCallbackMsg;
 extern const IID CLSID_SBS_StdURLMoniker;
